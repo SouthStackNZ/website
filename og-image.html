@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      background: #0a0f0a;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Background grid lines */
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(76, 175, 125, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(76, 175, 125, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Glow blob */
+    .glow {
+      position: absolute;
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(76, 175, 125, 0.12) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .badge {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #4caf7d;
+      background: rgba(76, 175, 125, 0.1);
+      border: 1px solid rgba(76, 175, 125, 0.25);
+      padding: 8px 20px;
+      border-radius: 999px;
+    }
+
+    h1 {
+      font-size: 96px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    h1 span { color: #4caf7d; }
+
+    p {
+      font-size: 22px;
+      color: #555;
+      letter-spacing: 0.02em;
+      font-weight: 400;
+    }
+
+    /* Corner marks */
+    .corner {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-color: rgba(76, 175, 125, 0.2);
+      border-style: solid;
+    }
+    .corner.tl { top: 32px; left: 32px; border-width: 2px 0 0 2px; }
+    .corner.tr { top: 32px; right: 32px; border-width: 2px 2px 0 0; }
+    .corner.bl { bottom: 32px; left: 32px; border-width: 0 0 2px 2px; }
+    .corner.br { bottom: 32px; right: 32px; border-width: 0 2px 2px 0; }
+
+    /* Bottom domain */
+    .domain {
+      position: absolute;
+      bottom: 44px;
+      font-size: 13px;
+      color: #2a2a2a;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow"></div>
+
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="content">
+    <div class="badge">South Island, New Zealand</div>
+    <h1>South<span>Stack</span></h1>
+    <p>Web Development &nbsp;·&nbsp; Web Apps &nbsp;·&nbsp; Mobile &nbsp;·&nbsp; E-Commerce</p>
+    <div class="cta">Coming Soon &nbsp;→&nbsp; southstack.co.nz</div>
+  </div>
+
+  <div class="domain">SOUTHSTACK.CO.NZ</div>
+</body>
+</html>
