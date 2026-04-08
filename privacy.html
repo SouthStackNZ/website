@@ -57,7 +57,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    // GA fires only after user accepts cookies
     window.loadAnalytics = function() {
       var s = document.createElement('script');
       s.async = true;
@@ -89,7 +88,7 @@
 
     <div class="policy-body">
       <div class="policy-meta">
-        Effective date: [DATE] &nbsp;·&nbsp; Version 1.0 &nbsp;·&nbsp; SouthStack Limited &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f199949d9d9eb1829e848599828590929adf929edf9f8b">[email&#160;protected]</a>
+        Effective date: April 2026 &nbsp;·&nbsp; Version 1.0 &nbsp;·&nbsp; SouthStack Limited &nbsp;·&nbsp; hello@southstack.co.nz
       </div>
 
       <h2>1. Overview</h2>
@@ -147,10 +146,10 @@
       </ul>
 
       <h2>9. Contact</h2>
-      <p>For privacy enquiries, contact us at <a href="/cdn-cgi/l/email-protection#dab2bfb6b6b59aa9b5afaeb2a9aebbb9b1f4b9b5f4b4a0" style="color:var(--green)"><span class="__cf_email__" data-cfemail="f199949d9d9eb1829e848599828590929adf929edf9f8b">[email&#160;protected]</span></a>.</p>
+      <p>For privacy enquiries, contact us at <a href="mailto:hello@southstack.co.nz" style="color:var(--green)">hello@southstack.co.nz</a>.</p>
 
       <h2>10. Updates</h2>
-      <p>This policy is reviewed annually. The current version is always available at southstack.co.nz/privacy. Last updated: [DATE].</p>
+      <p>This policy is reviewed annually. The current version is always available at southstack.co.nz/privacy. Last updated: April 2026.</p>
     </div>
   </section>
 
@@ -165,4 +164,40 @@
       <ul class="footer-links">
         <li><a href="/services.html">Services</a></li><li><a href="/about.html">About</a></li><li><a href="/work.html">Work</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/churches.html">Churches</a></li><li><a href="/privacy.html">Privacy Policy</a></li>
       </ul>
-      <p class="footer-copy">&copy; 2026 SOUTHSTACK LIMITED &mdash; ROLLESTON, CANTERBURY, NZ &mdash; NZBN 9429053502803<
+      <p class="footer-copy">&copy; 2026 SOUTHSTACK LIMITED &mdash; ROLLESTON, CANTERBURY, NZ &mdash; NZBN 9429053502803</p>
+    </div>
+  </footer>
+
+</div>
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  if (toggle) toggle.addEventListener('click', () => links.classList.toggle('open'));
+</script>
+
+  <!-- COOKIE CONSENT BANNER -->
+  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie consent">
+    <p style="margin:0">We use analytics to understand how people find us. No advertising or cross-site tracking. <a href="/privacy.html">Privacy Policy</a></p>
+    <div class="cookie-actions">
+      <button class="cookie-decline" onclick="cookieDecline()">Decline</button>
+      <button class="cookie-accept" onclick="cookieAccept()">Accept</button>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var banner = document.getElementById('cookie-banner');
+      var consent = localStorage.getItem('ss-cookie-consent');
+      if (!consent) { setTimeout(function() { banner.classList.add('visible'); }, 800); }
+      window.cookieAccept = function() {
+        localStorage.setItem('ss-cookie-consent', 'accepted');
+        banner.classList.remove('visible');
+        loadAnalytics();
+      };
+      window.cookieDecline = function() {
+        localStorage.setItem('ss-cookie-consent', 'declined');
+        banner.classList.remove('visible');
+      };
+    })();
+  </script>
+</body>
+</html>

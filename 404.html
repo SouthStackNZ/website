@@ -82,5 +82,30 @@
   const links = document.getElementById('nav-links');
   if (toggle) toggle.addEventListener('click', () => links.classList.toggle('open'));
 </script>
+
+  <!-- COOKIE CONSENT BANNER -->
+  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie consent">
+    <p style="margin:0">We use analytics to understand how people find us. No advertising or cross-site tracking. <a href="/privacy.html">Privacy Policy</a></p>
+    <div class="cookie-actions">
+      <button class="cookie-decline" onclick="cookieDecline()">Decline</button>
+      <button class="cookie-accept" onclick="cookieAccept()">Accept</button>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var banner = document.getElementById('cookie-banner');
+      var consent = localStorage.getItem('ss-cookie-consent');
+      if (!consent) { setTimeout(function() { banner.classList.add('visible'); }, 800); }
+      window.cookieAccept = function() {
+        localStorage.setItem('ss-cookie-consent', 'accepted');
+        banner.classList.remove('visible');
+        loadAnalytics();
+      };
+      window.cookieDecline = function() {
+        localStorage.setItem('ss-cookie-consent', 'declined');
+        banner.classList.remove('visible');
+      };
+    })();
+  </script>
 </body>
 </html>

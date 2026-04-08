@@ -152,7 +152,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    // GA fires only after user accepts cookies
     window.loadAnalytics = function() {
       var s = document.createElement('script');
       s.async = true;
@@ -188,10 +187,23 @@
         <h2>We'd love to hear from you</h2>
         <p>Fill in the form and we'll get back to you within one business day. Not sure what you need yet? That's fine — just tell us roughly what you're thinking and we'll figure it out together.</p>
 
-        <a href="/cdn-cgi/l/email-protection#234b464f4f4c63504c56574b50574240480d404c0d4d59" class="contact-detail">
+        <a id="email-link" href="#" class="contact-detail">
           <span class="contact-detail-icon">✉️</span>
-          <span class="__cf_email__" data-cfemail="563e333a3a3916253923223e252237353d78353978382c">[email&#160;protected]</span>
+          <span>
+            <span id="email-display" style="display:block;font-weight:600;color:#fff">hello@southstack.co.nz</span>
+            <span style="font-size:0.8rem;color:var(--muted)">Click to open in your email app</span>
+          </span>
         </a>
+        <script>
+          (function() {
+            var e = [104,101,108,108,111,64,115,111,117,116,104,115,116,97,99,107,46,99,111,46,110,122];
+            var addr = e.map(function(c){ return String.fromCharCode(c); }).join('');
+            var el = document.getElementById('email-display');
+            var link = document.getElementById('email-link');
+            if (el) el.textContent = addr;
+            if (link) link.href = 'mailto:' + addr;
+          })();
+        </script>
 
         <a href="https://www.linkedin.com/company/111956608" target="_blank" rel="noopener" class="contact-detail">
           <span class="contact-detail-icon">
@@ -252,7 +264,7 @@
             <div class="setup-steps">
               <h4>To set up the Tally form:</h4>
               <ol>
-                <li>Sign in at <a href="https://tally.so" target="_blank" rel="noopener">tally.so</a> with <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8de5e8e1e1e2cdfee2f8f9e5fef9eceee6a3eee2a3e3f7">[email&#160;protected]</a></li>
+                <li>Sign in at <a href="https://tally.so" target="_blank" rel="noopener">tally.so</a> with hello@southstack.co.nz</li>
                 <li>Create a new form using <strong>Client_Enquiry_Form.docx</strong> as the field reference (in Master_Templates/)</li>
                 <li>Connect Tally to your Notion workspace for automatic lead capture</li>
                 <li>In form settings → Embed → copy the iframe code</li>
@@ -263,9 +275,7 @@
 
             <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border)">
               <p>In the meantime, email us directly:</p>
-              <a href="/cdn-cgi/l/email-protection#2d45484141426d5e425859455e594c4e46034e42034357" class="btn btn-primary" style="margin-top:0.5rem">
-                <span class="__cf_email__" data-cfemail="f49c9198989bb4879b81809c878095979fda979bda9a8e">[email&#160;protected]</span>
-              </a>
+              <a href="#" onclick="(function(){var e=[104,101,108,108,111,64,115,111,117,116,104,115,116,97,99,107,46,99,111,46,110,122];window.location='mailto:'+e.map(function(c){return String.fromCharCode(c);}).join('');})();return false;" class="btn btn-primary" style="margin-top:0.5rem">hello@southstack.co.nz</a>
             </div>
           </div>
           <!-- END PLACEHOLDER — replace with Tally embed -->
@@ -285,4 +295,42 @@
         <a href="https://www.youtube.com/channel/UCI_KFkMnMIg4t4MWzhQ2E2w" target="_blank" rel="noopener" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
       </div>
       <ul class="footer-links">
-        <li><a href="/services.html">Services</a></li><li><a href="/about.html">About</a></li><li><a href="/work.html">Work</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/churches.html">Churches</a></li><li><a href="/privacy.html">Priv
+        <li><a href="/services.html">Services</a></li><li><a href="/about.html">About</a></li><li><a href="/work.html">Work</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/churches.html">Churches</a></li><li><a href="/privacy.html">Privacy Policy</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 SOUTHSTACK LIMITED &mdash; ROLLESTON, CANTERBURY, NZ &mdash; NZBN 9429053502803</p>
+    </div>
+  </footer>
+
+</div>
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  if (toggle) toggle.addEventListener('click', () => links.classList.toggle('open'));
+</script>
+
+  <!-- COOKIE CONSENT BANNER -->
+  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie consent">
+    <p style="margin:0">We use analytics to understand how people find us. No advertising or cross-site tracking. <a href="/privacy.html">Privacy Policy</a></p>
+    <div class="cookie-actions">
+      <button class="cookie-decline" onclick="cookieDecline()">Decline</button>
+      <button class="cookie-accept" onclick="cookieAccept()">Accept</button>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var banner = document.getElementById('cookie-banner');
+      var consent = localStorage.getItem('ss-cookie-consent');
+      if (!consent) { setTimeout(function() { banner.classList.add('visible'); }, 800); }
+      window.cookieAccept = function() {
+        localStorage.setItem('ss-cookie-consent', 'accepted');
+        banner.classList.remove('visible');
+        loadAnalytics();
+      };
+      window.cookieDecline = function() {
+        localStorage.setItem('ss-cookie-consent', 'declined');
+        banner.classList.remove('visible');
+      };
+    })();
+  </script>
+</body>
+</html>
