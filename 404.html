@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — SouthStack</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <meta name="theme-color" content="#1a3d2b">
+  <link rel="stylesheet" href="/shared.css">
+  <style>
+    .not-found {
+      min-height: calc(100vh - 72px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .not-found-inner { max-width: 480px; }
+    .not-found h1 { font-size: clamp(4rem,15vw,8rem); font-weight:800; color:var(--green); line-height:1; letter-spacing:-0.04em; }
+    .not-found h2 { font-size:1.5rem; font-weight:700; margin:0.75rem 0 0.75rem; }
+    .not-found p { color:var(--muted); font-size:0.95rem; line-height:1.7; margin-bottom:2rem; }
+    .not-found-links { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <nav>
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="SouthStack">South<span>Stack</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/services.html">Services</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/work.html">Work</a></li>
+      <li><a href="/pricing.html">Pricing</a></li>
+      <li><a href="/contact.html" class="nav-cta">Get in touch</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="not-found">
+    <div class="not-found-inner">
+      <h1>404</h1>
+      <h2>Page not found</h2>
+      <p>The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+      <div class="not-found-links">
+        <a href="/" class="btn btn-primary">Go home</a>
+        <a href="/contact.html" class="btn btn-outline">Get in touch</a>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/work.html">Work</a></li>
+        <li><a href="/pricing.html">Pricing</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/churches.html">Churches &amp; Nonprofits</a></li>
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 SOUTHSTACK LIMITED &mdash; ROLLESTON, CANTERBURY, NZ</p>
+    </div>
+  </footer>
+</div>
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  if (toggle) toggle.addEventListener('click', () => links.classList.toggle('open'));
+</script>
+</body>
+</html>
