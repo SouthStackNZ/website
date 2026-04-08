@@ -221,6 +221,20 @@
 
     .faq-a.open { display: block; }
   </style>
+  <!-- Google Analytics 4 — only loads after cookie consent -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    // GA fires only after user accepts cookies
+    window.loadAnalytics = function() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-J530JH16CT';
+      document.head.appendChild(s);
+      gtag('config', 'G-J530JH16CT');
+    };
+  </script>
 </head>
 <body>
 <div class="page">
@@ -490,8 +504,7 @@
       window.cookieAccept = function() {
         localStorage.setItem('ss-cookie-consent', 'accepted');
         banner.classList.remove('visible');
-        // TODO: uncomment your analytics script here once chosen
-        // loadAnalytics();
+        loadAnalytics();
       };
       window.cookieDecline = function() {
         localStorage.setItem('ss-cookie-consent', 'declined');
