@@ -4,64 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SouthStack — Web Developer Christchurch, Rolleston &amp; South Island NZ</title>
-  <meta name="description" content="Web development studio based in Rolleston, Canterbury. Websites, web apps, mobile apps and e-commerce for Christchurch, Selwyn and NZ businesses.">
-
-  <!-- Canonical -->
+  <meta name="description" content="Web development studio based in Rolleston, Canterbury. Fast, modern websites and web applications for NZ businesses.">
   <link rel="canonical" href="https://southstack.co.nz/">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-
-  <!-- Theme colour -->
   <meta name="theme-color" content="#1a3d2b">
-
-  <!-- SEO -->
-  <meta name="keywords" content="web developer Christchurch, web development Rolleston, web developer Canterbury, web developer Selwyn, web design Christchurch, website developer South Island NZ, web developer NZ, web application development Christchurch, e-commerce Christchurch, mobile app developer Canterbury, SouthStack">
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://southstack.co.nz/">
   <meta property="og:title" content="SouthStack — Web Developer Christchurch &amp; South Island NZ">
-  <meta property="og:description" content="Web development studio based in Rolleston, Canterbury. Websites, web apps, mobile apps and e-commerce for Christchurch, Selwyn and NZ businesses.">
+  <meta property="og:description" content="Web development studio based in Rolleston, Canterbury. Fast, modern websites and web applications for NZ businesses.">
   <meta property="og:image" content="https://southstack.co.nz/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="en_NZ">
   <meta property="og:site_name" content="SouthStack">
-
-  <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@southstacknz">
   <meta name="twitter:title" content="SouthStack — Web Developer Christchurch &amp; South Island NZ">
-  <meta name="twitter:description" content="Web development studio based in Rolleston, Canterbury. Websites, web apps, mobile apps and e-commerce for Christchurch, Selwyn and NZ businesses.">
+  <meta name="twitter:description" content="Web development studio based in Rolleston, Canterbury. Fast, modern websites and web applications for NZ businesses.">
   <meta name="twitter:image" content="https://southstack.co.nz/og-image.png">
-
-  <!-- Geo -->
   <meta name="geo.region" content="NZ-CAN">
   <meta name="geo.placename" content="Rolleston, Selwyn, Canterbury, New Zealand">
   <meta name="geo.position" content="-43.5933;172.3789">
   <meta name="ICBM" content="-43.5933, 172.3789">
-
-  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "SouthStack",
-    "description": "Web development studio based in Rolleston, Canterbury. Websites, web apps, mobile apps, and e-commerce for NZ businesses.",
+    "description": "Web development studio based in Rolleston, Canterbury. Websites, web apps, and e-commerce for NZ businesses.",
     "url": "https://southstack.co.nz",
     "areaServed": ["Rolleston","Selwyn","Christchurch","Canterbury","South Island","New Zealand"],
-    "serviceType": ["Web Design","Web Development","Mobile App Development","E-commerce Development","SEO","API Development"],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Rolleston",
-      "addressRegion": "Canterbury",
-      "addressCountry": "NZ"
-    },
+    "serviceType": ["Web Design","Web Development","E-commerce Development","SEO","API Development"],
+    "address": {"@type":"PostalAddress","addressLocality":"Rolleston","addressRegion":"Canterbury","addressCountry":"NZ"},
     "sameAs": [
       "https://www.linkedin.com/company/111956608",
       "https://www.instagram.com/southstacknz/",
@@ -70,161 +47,326 @@
     ]
   }
   </script>
-
+  <link rel="stylesheet" href="shared.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0a0f0a;
-      color: #ffffff;
-      min-height: 100vh;
+    .notice-banner {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      z-index: 90;
+      background: rgba(180, 100, 0, 0.12);
+      border-bottom: 1px solid rgba(180, 100, 0, 0.25);
+      padding: 0.6rem 1.5rem;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
-    }
-
-    .container {
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: #c87c2a;
       text-align: center;
-      max-width: 640px;
     }
 
-    .heading-row {
+    .notice-banner a {
+      color: #e8942e;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* Push hero down to account for banner */
+    .hero { padding-top: 3rem; }
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 72px);
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
+      padding: 5rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
-    .logo {
-      width: 72px;
-      height: 72px;
-      border-radius: 16px;
-      opacity: 0.92;
-      flex-shrink: 0;
-    }
+    .hero-content { max-width: 680px; }
 
-    .badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #4caf7d;
-      background: rgba(76, 175, 125, 0.1);
-      border: 1px solid rgba(76, 175, 125, 0.2);
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      margin-bottom: 2rem;
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 5rem);
       font-weight: 800;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
       line-height: 1;
       margin-bottom: 1.5rem;
     }
 
-    h1 span { color: #4caf7d; }
-
-    p {
-      font-size: 1.1rem;
-      color: #666;
+    .hero-desc {
+      font-size: 1.2rem;
+      color: var(--muted);
       line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
     }
 
-    /* Social links */
-    .socials {
+    .hero-actions {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-top: 2.5rem;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
-    .social-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
-      color: #555;
-      text-decoration: none;
-      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 5rem;
     }
 
-    .social-link:hover {
-      background: rgba(76, 175, 125, 0.1);
-      border-color: rgba(76, 175, 125, 0.3);
-      color: #4caf7d;
-      transform: translateY(-2px);
+    .stat {
+      background: var(--surface);
+      padding: 2rem;
+      text-align: center;
     }
 
-    .social-link svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: -0.03em;
     }
 
-    .footer {
-      position: fixed;
-      bottom: 2rem;
-      font-size: 0.75rem;
-      color: #2a2a2a;
-      letter-spacing: 0.1em;
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    /* SERVICES PREVIEW */
+    .service-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .service-icon {
+      font-size: 1.75rem;
+    }
+
+    /* WHY US */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .why-item {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .why-item h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0.75rem 0 0.4rem;
+    }
+
+    .why-item p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .why-icon { font-size: 1.4rem; }
+
+    /* CTA BAND */
+    .cta-band {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .cta-band p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 680px) {
+      .stats { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
     }
   </style>
 </head>
 <body>
+<div class="page">
 
-  <div class="container">
-    <div class="badge">South Island, New Zealand</div>
-    <div class="heading-row">
-      <h1>South<span>Stack</span></h1>
-      <img src="logo.png" alt="SouthStack Logo" class="logo">
-    </div>
-    <p>Web development studio based in the South Island. We build fast, modern websites and web applications for NZ businesses.</p>
-
-    <div class="socials">
-
-      <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/company/111956608" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="SouthStack on LinkedIn">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </svg>
-      </a>
-
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/southstacknz/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="SouthStack on Instagram">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-        </svg>
-      </a>
-
-      <!-- X / Twitter -->
-      <a href="https://x.com/SouthStackNZ" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="SouthStack on X">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.631 5.905-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-      </a>
-
-      <!-- YouTube -->
-      <a href="https://www.youtube.com/channel/UCI_KFkMnMIg4t4MWzhQ2E2w" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="SouthStack on YouTube">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-        </svg>
-      </a>
-
-    </div>
+  <!-- NOT TAKING CLIENTS BANNER -->
+  <div class="notice-banner">
+    <span>🔒</span>
+    <span>SouthStack is not currently taking on new projects — we're focused on our own launch. <a href="/contact.html">Register your interest</a> for when we open.</span>
   </div>
 
-  <div class="footer">SOUTHSTACK.CO.NZ &mdash; COMING SOON</div>
+  <nav>
+    <a href="/" class="nav-logo">
+      <img src="logo.png" alt="SouthStack">
+      South<span>Stack</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/services.html">Services</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/work.html">Work</a></li>
+      <li><a href="/pricing.html">Pricing</a></li>
+      <li><a href="/contact.html" class="nav-cta">Get in touch</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="badge" style="margin-bottom:1.5rem">South Island, New Zealand</div>
+      <h1>We build websites that <span>actually work</span></h1>
+      <p class="hero-desc">Fast, modern websites and web applications for NZ businesses. Based in Rolleston, Canterbury — built for performance, accessibility, and results.</p>
+      <div class="hero-actions">
+        <a href="/contact.html" class="btn btn-primary">Start a project</a>
+        <a href="/work.html" class="btn btn-outline">See our work</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">&gt;90</div>
+          <div class="stat-label">Lighthouse score on every build</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">WCAG</div>
+          <div class="stat-label">2.2 AA accessibility built in</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">NZ</div>
+          <div class="stat-label">Privacy Act 2020 compliant</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SERVICES PREVIEW -->
+  <section>
+    <div class="section-label">What we build</div>
+    <h2 class="section-title">Services</h2>
+    <p class="lead">From fast marketing sites to full-stack business platforms.</p>
+    <div class="card-grid">
+      <div class="card service-card">
+        <div class="service-icon">⚡</div>
+        <h3>Astro Marketing Sites</h3>
+        <p>Lightning-fast static sites for small businesses, trades, cafes, and local brands. Outstanding SEO out of the box.</p>
+        <a href="/services.html" style="display:inline-block;margin-top:1.25rem;font-size:0.875rem;color:var(--green);text-decoration:none;font-weight:600;">Learn more →</a>
+      </div>
+      <div class="card service-card">
+        <div class="service-icon">🏗️</div>
+        <h3>Next.js Platforms</h3>
+        <p>Full-stack React applications for e-commerce, bookings, dashboards, and SaaS MVPs. Built to scale.</p>
+        <a href="/services.html" style="display:inline-block;margin-top:1.25rem;font-size:0.875rem;color:var(--green);text-decoration:none;font-weight:600;">Learn more →</a>
+      </div>
+      <div class="card service-card">
+        <div class="service-icon">📊</div>
+        <h3>Data &amp; Cloud <span class="badge badge-muted" style="font-size:0.65rem;padding:0.2rem 0.6rem;vertical-align:middle">Coming soon</span></h3>
+        <p>AWS infrastructure, data pipelines, analytics dashboards, and ML integration for data-driven businesses.</p>
+        <a href="/services.html" style="display:inline-block;margin-top:1.25rem;font-size:0.875rem;color:var(--green);text-decoration:none;font-weight:600;">Learn more →</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- WHY US -->
+  <section>
+    <div class="section-label">Why SouthStack</div>
+    <h2 class="section-title">Built different. <span>By design.</span></h2>
+    <p class="lead">We use AI tools to work efficiently — but every site is built with professional judgement, NZ compliance, and accountability.</p>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">🚀</div>
+        <h4>Performance first</h4>
+        <p>Astro for content sites means near-instant load times. No bloated builders, no unnecessary JavaScript.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🇳🇿</div>
+        <h4>NZ compliance built in</h4>
+        <p>WCAG 2.2 AA, Privacy Act 2020, GST handling — all included. Not an afterthought.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">📄</div>
+        <h4>You own everything</h4>
+        <p>Full IP transfer on final payment. No licence fees, no platform lock-in, no ongoing dependencies.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">💬</div>
+        <h4>Direct founder contact</h4>
+        <p>No account managers or handoffs. You work directly with the person building your site.</p>
+      </div>
+    </div>
+    <div style="margin-top:2rem">
+      <a href="/about.html" class="btn btn-outline">Read more about us →</a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <h2>Ready to build something <span>great?</span></h2>
+    <p>Tell us about your project — we'll get back to you within one business day.</p>
+    <a href="/contact.html" class="btn btn-primary">Get in touch</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="socials">
+        <a href="https://www.linkedin.com/company/111956608" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.instagram.com/southstacknz/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+        <a href="https://x.com/SouthStackNZ" target="_blank" rel="noopener" class="social-link" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.631 5.905-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.youtube.com/channel/UCI_KFkMnMIg4t4MWzhQ2E2w" target="_blank" rel="noopener" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+      <ul class="footer-links">
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/work.html">Work</a></li>
+        <li><a href="/pricing.html">Pricing</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/churches.html">Churches &amp; Nonprofits</a></li>
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+      </ul>
+      <p class="footer-copy">SOUTHSTACK LIMITED &mdash; ROLLESTON, CANTERBURY, NZ &mdash; NZBN 9429053502803</p>
+    </div>
+  </footer>
+
+</div>
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  if (toggle) toggle.addEventListener('click', () => links.classList.toggle('open'));
+</script>
 </body>
 </html>
