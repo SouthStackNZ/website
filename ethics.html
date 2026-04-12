@@ -3,96 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Work — SouthStack</title>
-  <meta name="description" content="Case studies and projects from SouthStack — web development studio based in Rolleston, Canterbury, NZ.">
-  <link rel="canonical" href="https://southstack.co.nz/work">
+  <title>Code of Ethics — SouthStack</title>
+  <meta name="description" content="SouthStack's code of ethics — the work we take on, the work we don't, and why.">
+  <link rel="canonical" href="https://southstack.co.nz/ethics">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <meta name="theme-color" content="#1a3d2b">
-  <meta property="og:title" content="Work — SouthStack">
-  <meta property="og:image" content="https://southstack.co.nz/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@southstacknz">
   <link rel="stylesheet" href="shared.css">
   <style>
-    .coming-soon-hero {
-      min-height: 50vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 5rem 2rem;
+    .policy-body {
+      max-width: 720px;
     }
 
-    .coming-soon-hero p {
-      color: var(--muted);
+    .policy-body h2 {
       font-size: 1.1rem;
-      line-height: 1.7;
-      max-width: 480px;
-      margin: 1rem 0 2.5rem;
-    }
-
-    /* PLACEHOLDER CARDS */
-    .work-placeholder {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.25rem;
-      margin-top: 3rem;
-    }
-
-    .work-card {
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      background: var(--surface);
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .work-card:hover {
-      border-color: var(--green-border);
-      transform: translateY(-3px);
-    }
-
-    .work-thumb {
-      height: 200px;
-      background: var(--surface2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .work-info {
-      padding: 1.5rem;
-    }
-
-    .work-info h3 {
-      font-size: 1.05rem;
       font-weight: 700;
-      margin-bottom: 0.4rem;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--text);
     }
 
-    .work-info p {
-      font-size: 0.875rem;
+    .policy-body h2:first-of-type { margin-top: 0; }
+
+    .policy-body p {
+      font-size: 0.95rem;
       color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 1rem;
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
     }
 
-    .work-tags {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
+    .policy-body ul {
+      padding-left: 1.25rem;
+      margin-bottom: 0.75rem;
     }
 
-    .work-tag {
-      font-size: 0.72rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 6px;
-      background: rgba(255,255,255,0.04);
+    .policy-body li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.3rem;
+    }
+
+    .policy-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 0.75rem 1rem;
       border: 1px solid var(--border);
-      color: var(--muted);
+      border-radius: 10px;
+      background: var(--surface);
+      margin-bottom: 3rem;
     }
   </style>
   <!-- Google Analytics 4 — only loads after cookie consent -->
@@ -100,7 +57,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    // GA fires only after user accepts cookies
     window.loadAnalytics = function() {
       var s = document.createElement('script');
       s.async = true;
@@ -118,78 +74,55 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="/services.html">Services</a></li>
       <li><a href="/about.html">About</a></li>
-      <li><a href="/work.html" class="active">Work</a></li>
+      <li><a href="/work.html">Work</a></li>
       <li><a href="/pricing.html">Pricing</a></li>
       <li><a href="/contact.html" class="nav-cta">Get in touch</a></li>
     </ul>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
   </nav>
 
-  <section class="coming-soon-hero">
-    <div class="badge">Coming soon</div>
-    <h1 class="page-title" style="margin-top:1.25rem">Our <span>work</span></h1>
-    <p>Case studies are on their way. We're currently working on our first projects — check back soon to see what we've built.</p>
-    <a href="/contact.html" class="btn btn-primary">Start a project with us</a>
-  </section>
-
-  <hr class="divider">
-
-  <!-- PLACEHOLDER CASE STUDY CARDS -->
   <section>
-    <div class="section-label">Projects</div>
-    <h2 class="section-title">Case studies <span>coming soon</span></h2>
-    <p class="lead">Here's a preview of the kind of work we'll be showcasing.</p>
+    <div class="section-label">How we work</div>
+    <h1 class="page-title" style="font-size:clamp(1.75rem,4vw,2.5rem)">Code of Ethics</h1>
+    <p class="lead" style="margin-bottom:2.5rem">The work we take on, the work we don't, and why.</p>
 
-    <div class="work-placeholder">
-      <div class="work-card">
-        <div class="work-thumb">⚡</div>
-        <div class="work-info">
-          <h3>Astro Marketing Site — Local Business</h3>
-          <p>A fast, conversion-focused brochure site for a Canterbury-based business. Lighthouse 100 on performance.</p>
-          <div class="work-tags">
-            <span class="work-tag">Astro</span>
-            <span class="work-tag">Tailwind</span>
-            <span class="work-tag">Cloudflare</span>
-            <span class="work-tag badge" style="color:var(--green);background:var(--green-dim);border-color:var(--green-border)">Coming soon</span>
-          </div>
-        </div>
+    <div class="policy-body">
+      <div class="policy-meta">
+        Version 1.0 &nbsp;·&nbsp; SouthStack Limited &nbsp;·&nbsp; hello@southstack.co.nz
       </div>
-      <div class="work-card">
-        <div class="work-thumb">🏗️</div>
-        <div class="work-info">
-          <h3>Next.js Platform — Service Business</h3>
-          <p>Booking system and customer portal built in Next.js with Supabase and Stripe integration.</p>
-          <div class="work-tags">
-            <span class="work-tag">Next.js</span>
-            <span class="work-tag">Supabase</span>
-            <span class="work-tag">Stripe</span>
-            <span class="work-tag badge" style="color:var(--green);background:var(--green-dim);border-color:var(--green-border)">Coming soon</span>
-          </div>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb">📊</div>
-        <div class="work-info">
-          <h3>Data Dashboard — Business Analytics</h3>
-          <p>Analytics dashboard built with Metabase on AWS, surfacing key business metrics from existing data sources.</p>
-          <div class="work-tags">
-            <span class="work-tag">AWS</span>
-            <span class="work-tag">Metabase</span>
-            <span class="work-tag">Python</span>
-            <span class="work-tag badge" style="color:var(--green);background:var(--green-dim);border-color:var(--green-border)">Coming soon</span>
-          </div>
-        </div>
-      </div>
+
+      <h2>1. Our Foundation</h2>
+      <p>SouthStack is a faith-led business. That shapes how we treat clients, how we price our work, and what work we choose to take on. We believe in honest pricing, clear contracts, and building things that genuinely help people — not just things that make money.</p>
+      <p>We are not preachy about this. We work with clients of any background, faith, or none. But our values are real and they affect the decisions we make.</p>
+
+      <h2>2. Work We Do Not Take On</h2>
+      <p>We will decline work that conflicts with our faith and values. This includes:</p>
+      <ul>
+        <li>Adult content, pornography, or sexually explicit material</li>
+        <li>Online gambling or betting platforms</li>
+        <li>Predatory lending, payday loans, or high-interest consumer credit marketing</li>
+        <li>Products or services designed to deceive, manipulate, or exploit vulnerable people</li>
+        <li>Content that promotes hatred, discrimination, or harm toward any person or group</li>
+      </ul>
+      <p>If you are unsure whether your project falls into one of these categories, just ask us. We would rather have an honest conversation upfront than waste your time or ours.</p>
+
+      <h2>3. How We Work With Clients</h2>
+      <p>Our faith informs how we treat the people we work with:</p>
+      <ul>
+        <li>We give honest advice, even when it costs us a sale</li>
+        <li>We quote accurately and do not add hidden charges</li>
+        <li>We tell you when something is outside our capability rather than overpromising</li>
+        <li>We respect your time, your budget, and your trust</li>
+        <li>We do not take on more work than we can deliver well</li>
+      </ul>
+
+      <h2>4. Our Commitment to Quality</h2>
+      <p>We consider poor work a failure of integrity, not just a technical shortcoming. Every site we build meets WCAG 2.2 AA accessibility standards, scores above 90 on Lighthouse performance, and is delivered with a signed contract and clear handover. We do not cut corners.</p>
+
+      <h2>5. Contact</h2>
+      <p>If you have questions about this policy or want to discuss whether your project is a fit, contact us at <a href="mailto:hello@southstack.co.nz" style="color:var(--green)">hello@southstack.co.nz</a>.</p>
     </div>
   </section>
-
-  <hr class="divider">
-
-  <div class="cta-band" style="background:transparent;border-top:none;border-bottom:none">
-    <h2>Want to be our <span>first case study?</span></h2>
-    <p>We're taking on our first projects now. Get in touch.</p>
-    <a href="/contact.html" class="btn btn-primary">Start a project</a>
-  </div>
 
   <footer>
     <div class="footer-inner">
@@ -221,23 +154,11 @@
       <button class="cookie-accept" onclick="cookieAccept()">Accept</button>
     </div>
   </div>
-
-  <!-- ANALYTICS: Plausible (privacy-friendly, no cookies required)
-       Replace 'southstack.co.nz' with your domain.
-       Analytics only loads if user accepts OR you switch to Plausible
-       which is cookieless and GDPR/Privacy Act compliant without consent.
-       See: https://plausible.io
-       OPTION A (Plausible - cookieless, no consent needed):
-         <script defer data-domain="southstack.co.nz" src="https://plausible.io/js/script.js"></script>
-       OPTION B (Google Analytics - requires consent, uncomment below):
-  -->
   <script>
     (function() {
       var banner = document.getElementById('cookie-banner');
       var consent = localStorage.getItem('ss-cookie-consent');
-      if (!consent) {
-        setTimeout(function() { banner.classList.add('visible'); }, 800);
-      }
+      if (!consent) { setTimeout(function() { banner.classList.add('visible'); }, 800); }\
       window.cookieAccept = function() {
         localStorage.setItem('ss-cookie-consent', 'accepted');
         banner.classList.remove('visible');
