@@ -172,7 +172,7 @@
     (function() {
       var banner = document.getElementById('cookie-banner');
       var consent = localStorage.getItem('ss-cookie-consent');
-      if (!consent) { setTimeout(function() { banner.classList.add('visible'); }, 800); }\
+      if (!consent) { setTimeout(function() { banner.classList.add('visible'); }, 800); }
       window.cookieAccept = function() {
         localStorage.setItem('ss-cookie-consent', 'accepted');
         banner.classList.remove('visible');
