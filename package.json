@@ -1,0 +1,24 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "chat.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SouthStackNZ/website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SouthStackNZ/website/issues"
+  },
+  "homepage": "https://github.com/SouthStackNZ/website#readme",
+  "dependencies": {
+    "@netlify/blobs": "^10.7.4"
+  }
+}
