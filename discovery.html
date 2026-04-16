@@ -174,10 +174,10 @@
 
       <div class="discovery-intro" id="intro-screen">
         <h1>Tell us about your project</h1>
-        <p>We'll ask you a few questions so Jesse can put together an accurate proposal — no call needed. Takes about 5 minutes.</p>
+        <p>We'll ask you a few questions so SouthStack can put together an accurate proposal — no call needed. Takes about 5 minutes.</p>
         <div class="discovery-intro-actions">
           <button class="btn btn-primary" onclick="startChat()">Start</button>
-          <a href="/contact.html" class="skip-link">Skip — I'll wait for Jesse to get in touch</a>
+          <a href="/contact.html" class="skip-link">Skip — I'll wait to hear from SouthStack</a>
         </div>
       </div>
 
@@ -189,13 +189,16 @@
           <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
         </button>
       </div>
+      <div id="done-btn-row" style="display:none; padding: 0 1.75rem 1.25rem; text-align:center;">
+        <button class="btn btn-outline" style="font-size:0.82rem; padding: 0.4rem 1rem;" onclick="requestSummary()">I'm done — generate my brief</button>
+      </div>
 
       <div class="discovery-summary" id="summary-screen">
         <div>
           <div class="summary-label">Your project summary</div>
           <div class="summary-box" id="summary-text"></div>
         </div>
-        <p class="summary-note">Review this before sending — it's what Jesse will use to write your proposal.</p>
+        <p class="summary-note">Review this before sending — it's what SouthStack will use to write your proposal.</p>
         <div class="summary-actions">
           <button class="btn btn-primary" id="submit-btn" onclick="submitToNotion()">Send to SouthStack</button>
           <button class="btn btn-outline" onclick="goBackToChat()">Edit answers</button>
@@ -207,7 +210,7 @@
           <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
         </div>
         <h3>Thanks, <span id="done-name"></span></h3>
-        <p>Jesse will review your brief and send a proposal within 1–2 business days.</p>
+        <p>SouthStack will review your brief and send a proposal within 1–2 business days.</p>
         <a href="/" class="btn btn-outline" style="margin-top:0.5rem">Back to SouthStack</a>
       </div>
     </div>
@@ -215,8 +218,35 @@
 
   <script>
     var params = new URLSearchParams(window.location.search);
-    var clientName = params.get('name') || '';
-    var clientEmail = params.get('email') || '';
+    var clientName = '';
+    var clientEmail = '';
+    var tallyData = {};
+    var tokenParam = params.get('t');
+
+    // If token present, fetch tally data before starting
+    async function loadToken() {
+      if (!tokenParam) return;
+      try {
+        var res = await fetch('/.netlify/functions/token?t=' + tokenParam);
+        if (!res.ok) return;
+        var data = await res.json();
+        if (data.tally) {
+          tallyData = data.tally;
+          clientName = tallyData.name || '';
+          clientEmail = tallyData.email || '';
+          // Update intro text with their name if available
+          if (clientName) {
+            document.querySelector('.discovery-intro h1').textContent =
+              'Hi ' + clientName.split(' ')[0] + ', tell us about your project';
+          }
+        }
+      } catch (e) {
+        // Silent fail — chat works without tally data
+      }
+    }
+
+    // Load token data then make Start button work
+    loadToken();
 
     var chatHistory = [];
     var isLoading = false;
@@ -242,8 +272,8 @@
       document.getElementById('input-row').classList.add('active');
       document.getElementById('header-sub').textContent = 'SouthStack · Discovery';
       var greeting = clientName
-        ? 'Hi ' + clientName.split(' ')[0] + '! Thanks for getting in touch. I have your form details — I just want to ask a few follow-up questions so Jesse can put together a really accurate proposal for you.\n\nFirst up: what\'s the main goal for this project? What does success look like for you?'
-        : 'Hi there! Thanks for getting in touch. I just want to ask a few questions so Jesse can put together an accurate proposal for you.\n\nFirst up: what\'s the main goal for this project? What does success look like for you?';
+        ? 'Hi ' + clientName.split(' ')[0] + '! Thanks for getting in touch. I have your form details — I just want to ask a few follow-up questions so we can put together an accurate proposal for you.\n\nFirst up: what\'s the main goal for this project? What does success look like for you?'
+        : 'Hi there! Thanks for getting in touch. I just want to ask a few questions so SouthStack can put together an accurate proposal for you.\n\nFirst up: what\'s the main goal for this project? What does success look like for you?';
       addMessage(greeting, 'bot');
       chatHistory.push({ role: 'assistant', content: greeting });
       inputEl.focus();
@@ -287,7 +317,8 @@
             action: 'chat',
             messages: chatHistory,
             name: clientName,
-            email: clientEmail
+            email: clientEmail,
+            tally: tallyData
           })
         });
         var data = await res.json();
@@ -301,6 +332,7 @@
           showSummary(summaryText);
         } else {
           addMessage(reply, 'bot');
+          document.getElementById('done-btn-row').style.display = 'block';
         }
       } catch (err) {
         typing.remove();
@@ -309,6 +341,38 @@
 
       setLoading(false);
       inputEl.focus();
+    }
+
+    async function requestSummary() {
+      document.getElementById('done-btn-row').style.display = 'none';
+      chatHistory.push({ role: 'user', content: "I'm done, nothing else to add." });
+      setLoading(true);
+      var typing = document.createElement('div');
+      typing.className = 'd-msg d-msg-bot d-msg-typing';
+      typing.textContent = 'Putting your brief together…';
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      try {
+        var res = await fetch('/.netlify/functions/discovery', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'chat', messages: chatHistory, name: clientName, email: clientEmail, tally: tallyData })
+        });
+        var data = await res.json();
+        typing.remove();
+        if (data.summary) {
+          summaryText = data.summary;
+          showSummary(summaryText);
+        } else {
+          addMessage(data.reply || 'Something went wrong — please email hello@southstack.co.nz.', 'bot');
+          document.getElementById('done-btn-row').style.display = 'block';
+        }
+      } catch (err) {
+        typing.remove();
+        addMessage('Sorry, I lost connection. Please try again.', 'bot');
+        document.getElementById('done-btn-row').style.display = 'block';
+      }
+      setLoading(false);
     }
 
     function showSummary(summary) {
@@ -323,6 +387,7 @@
       document.getElementById('summary-screen').classList.remove('active');
       document.getElementById('chat-messages').classList.add('active');
       document.getElementById('input-row').classList.add('active');
+      document.getElementById('done-btn-row').style.display = 'block';
       document.getElementById('header-sub').textContent = 'SouthStack · Discovery';
       inputEl.focus();
     }
