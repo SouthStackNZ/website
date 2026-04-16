@@ -1,7 +1,3 @@
-// netlify/functions/token.js
-// POST — Zapier sends Tally data, gets back a short token URL
-// GET  — discovery page fetches tally data using the token
-
 const { getStore } = require('@netlify/blobs');
 
 function generateToken() {
@@ -13,12 +9,15 @@ function generateToken() {
   return token;
 }
 
-exports.handler = async function(event, context) {
+exports.handler = async function(event) {
   if (event.httpMethod === 'OPTIONS') return { statusCode: 204, body: '' };
 
-  var store = getStore({ name: 'discovery-tokens', consistency: 'strong' });
+  var store = getStore({
+    name: 'discovery-tokens',
+    siteID: '6a4a1c67-e67c-4c03-9173-748beabf2025',
+    token: process.env.NETLIFY_API_TOKEN
+  });
 
-  // GET — discovery page fetching data by token
   if (event.httpMethod === 'GET') {
     var token = event.queryStringParameters && event.queryStringParameters.t;
     if (!token) return { statusCode: 400, body: JSON.stringify({ error: 'No token provided' }) };
@@ -28,7 +27,6 @@ exports.handler = async function(event, context) {
       if (!raw) return { statusCode: 404, body: JSON.stringify({ error: 'Token not found or expired' }) };
 
       var data = JSON.parse(raw);
-
       if (Date.now() > data.expires) {
         await store.delete(token);
         return { statusCode: 410, body: JSON.stringify({ error: 'Token expired' }) };
@@ -44,7 +42,6 @@ exports.handler = async function(event, context) {
     }
   }
 
-  // POST — Zapier storing form data and getting a token back
   if (event.httpMethod === 'POST') {
     var secret = process.env.TOKEN_SECRET;
     if (secret && event.headers['x-token-secret'] !== secret) {
