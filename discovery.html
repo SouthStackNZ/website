@@ -218,7 +218,7 @@
     var clientName = params.get('name') || '';
     var clientEmail = params.get('email') || '';
 
-    var history = [];
+    var chatHistory = [];
     var isLoading = false;
     var summaryText = '';
 
@@ -245,7 +245,7 @@
         ? 'Hi ' + clientName.split(' ')[0] + '! Thanks for getting in touch. I have your form details — I just want to ask a few follow-up questions so Jesse can put together a really accurate proposal for you.\n\nFirst up: what\'s the main goal for this project? What does success look like for you?'
         : 'Hi there! Thanks for getting in touch. I just want to ask a few questions so Jesse can put together an accurate proposal for you.\n\nFirst up: what\'s the main goal for this project? What does success look like for you?';
       addMessage(greeting, 'bot');
-      history.push({ role: 'assistant', content: greeting });
+      chatHistory.push({ role: 'assistant', content: greeting });
       inputEl.focus();
     }
 
@@ -270,7 +270,7 @@
       inputEl.value = '';
       inputEl.style.height = 'auto';
       addMessage(text, 'user');
-      history.push({ role: 'user', content: text });
+      chatHistory.push({ role: 'user', content: text });
       setLoading(true);
 
       var typing = document.createElement('div');
@@ -285,7 +285,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             action: 'chat',
-            messages: history,
+            messages: chatHistory,
             name: clientName,
             email: clientEmail
           })
@@ -294,7 +294,7 @@
         typing.remove();
 
         var reply = data.reply || 'Sorry, something went wrong. Please email hello@southstack.co.nz.';
-        history.push({ role: 'assistant', content: reply });
+        chatHistory.push({ role: 'assistant', content: reply });
 
         if (data.summary) {
           summaryText = data.summary;
