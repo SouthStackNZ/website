@@ -224,29 +224,28 @@
     var tokenParam = params.get('t');
 
     // If token present, fetch tally data before starting
+    var tokenLoaded = false;
+
     async function loadToken() {
-      if (!tokenParam) return;
+      if (!tokenParam) { tokenLoaded = true; return; }
       try {
         var res = await fetch('/.netlify/functions/token?t=' + tokenParam);
-        if (!res.ok) return;
+        if (!res.ok) { tokenLoaded = true; return; }
         var data = await res.json();
         if (data.tally) {
           tallyData = data.tally;
           clientName = tallyData.name || '';
           clientEmail = tallyData.email || '';
-          // Update intro text with their name if available
           if (clientName) {
             document.querySelector('.discovery-intro h1').textContent =
               'Hi ' + clientName.split(' ')[0] + ', tell us about your project';
           }
         }
-      } catch (e) {
-        // Silent fail — chat works without tally data
-      }
+      } catch (e) {}
+      tokenLoaded = true;
     }
 
-    // Load token data then make Start button work
-    loadToken();
+    var tokenPromise = loadToken();
 
     var chatHistory = [];
     var isLoading = false;
@@ -266,7 +265,8 @@
       this.style.height = Math.min(this.scrollHeight, 120) + 'px';
     });
 
-    function startChat() {
+    async function startChat() {
+      await tokenPromise;
       document.getElementById('intro-screen').style.display = 'none';
       document.getElementById('chat-messages').classList.add('active');
       document.getElementById('input-row').classList.add('active');
