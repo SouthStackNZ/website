@@ -132,7 +132,7 @@ async function handleSubmit(body) {
         headers: notionHeaders(notionKey),
         body: JSON.stringify({
           filter: {
-            property: 'Email',
+            property: 'Email address',
             email: { equals: email }
           },
           page_size: 1
@@ -171,7 +171,7 @@ async function handleSubmit(body) {
           parent: { database_id: databaseId },
           properties: {
             'Name': { title: [{ type: 'text', text: { content: name } }] },
-            'Email': { email: email || null },
+            'Email address': { email: email || null },
             'Status': { status: { name: 'Discovery Call Done' } }
           },
           children: summaryBlocks
