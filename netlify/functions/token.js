@@ -1,7 +1,6 @@
 // netlify/functions/token.js
-// Two actions:
-//   POST — receives Tally data from Zapier, stores it, returns a short token
-//   GET  — discovery page fetches data using the token
+// POST — Zapier sends Tally data, gets back a short token URL
+// GET  — discovery page fetches tally data using the token
 
 const { getStore } = require('@netlify/blobs');
 
@@ -14,10 +13,10 @@ function generateToken() {
   return token;
 }
 
-exports.handler = async function(event) {
+exports.handler = async function(event, context) {
   if (event.httpMethod === 'OPTIONS') return { statusCode: 204, body: '' };
 
-  var store = getStore('discovery-tokens');
+  var store = getStore({ name: 'discovery-tokens', consistency: 'strong' });
 
   // GET — discovery page fetching data by token
   if (event.httpMethod === 'GET') {
@@ -30,7 +29,6 @@ exports.handler = async function(event) {
 
       var data = JSON.parse(raw);
 
-      // Check expiry — 7 days
       if (Date.now() > data.expires) {
         await store.delete(token);
         return { statusCode: 410, body: JSON.stringify({ error: 'Token expired' }) };
@@ -42,19 +40,15 @@ exports.handler = async function(event) {
         body: JSON.stringify({ tally: data.tally })
       };
     } catch (err) {
-      return { statusCode: 500, body: JSON.stringify({ error: 'Failed to retrieve token' }) };
+      return { statusCode: 500, body: JSON.stringify({ error: 'Failed to retrieve token', detail: err.message }) };
     }
   }
 
   // POST — Zapier storing form data and getting a token back
   if (event.httpMethod === 'POST') {
-    // Verify a shared secret so only Zapier can call this
     var secret = process.env.TOKEN_SECRET;
-    if (secret) {
-      var provided = event.headers['x-token-secret'];
-      if (provided !== secret) {
-        return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorised' }) };
-      }
+    if (secret && event.headers['x-token-secret'] !== secret) {
+      return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorised' }) };
     }
 
     var body;
@@ -62,7 +56,7 @@ exports.handler = async function(event) {
     catch (e) { return { statusCode: 400, body: JSON.stringify({ error: 'Invalid body' }) }; }
 
     var token = generateToken();
-    var payload = {
+    var payload = JSON.stringify({
       tally: {
         name: body.name || '',
         email: body.email || '',
@@ -82,11 +76,11 @@ exports.handler = async function(event) {
         referral: body.referral || '',
         extra: body.extra || ''
       },
-      expires: Date.now() + (7 * 24 * 60 * 60 * 1000) // 7 days
-    };
+      expires: Date.now() + (7 * 24 * 60 * 60 * 1000)
+    });
 
     try {
-      await store.set(token, JSON.stringify(payload));
+      await store.set(token, payload);
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
@@ -96,7 +90,7 @@ exports.handler = async function(event) {
         })
       };
     } catch (err) {
-      return { statusCode: 500, body: JSON.stringify({ error: 'Failed to store token' }) };
+      return { statusCode: 500, body: JSON.stringify({ error: 'Failed to store token', detail: err.message }) };
     }
   }
 
