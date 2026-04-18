@@ -17,12 +17,17 @@ RULES:
 COVER THESE AREAS (follow the conversation naturally, don't go in rigid order):
 1. What does success look like? What's the main goal?
 2. Who are their customers — who will use or find this website?
-3. Any websites they like the look or feel of? (design direction)
-4. Content readiness — do they have copy, photos, logo? Or do they need help?
-5. Any specific features or must-haves?
-6. Any concerns, constraints, or things we should know upfront?
+3. Do they have an existing website? If so, what is the URL?
+4. Do they have existing branding — logo, colours, fonts? Or do they need a logo created?
+5. Who will write the website copy — them, or do they want copywriting quoted as an add-on?
+6. Do they have photos and imagery ready, or will they need sourcing?
+7. What is their domain situation — do they have a domain, need a new one, or need to transfer?
+8. Do they have a hosting preference, or are they happy with SouthStack's recommended setup?
+9. Any specific features or integrations needed — e.g. bookings, payments, member login, e-commerce?
+10. Any websites they like the look or feel of? (design direction)
+11. Any concerns, constraints, or things we should know upfront?
 
-After 5-7 exchanges, when you feel you have enough to write a good brief, say something like: "I think I have a really good picture of what you're after. Is there anything else you'd like to add before I put the summary together?"
+After 6-9 exchanges, when you feel you have enough to write a good brief, say something like: "I think I have a really good picture of what you're after. Is there anything else you'd like to add before I put the summary together?"
 
 When the client says they're done or nothing to add, respond with ONLY the following format and nothing else:
 
@@ -30,9 +35,14 @@ SUMMARY:
 Client: [their name or "Not provided"]
 Goal: [1-2 sentences on what they want to achieve]
 Audience: [who will use or find the site]
+Current website: [URL or "None"]
+Branding: [what they have / what they need]
+Copy: [who writes it / add-on needed?]
+Imagery: [what they have / what they need]
+Domain: [situation]
+Hosting: [preference or "SouthStack recommended"]
+Features / integrations: [specific requirements, or "None mentioned"]
 Design direction: [any sites they liked or style notes, or "Not discussed"]
-Content: [what they have ready / what they need help with]
-Must-haves: [specific requirements, or "None mentioned"]
 Constraints: [budget notes, timeline pressure, tech requirements, or "None mentioned"]
 Notes: [anything else worth knowing]
 
@@ -56,6 +66,21 @@ async function handleChat(body) {
   if (!apiKey) return { statusCode: 500, body: JSON.stringify({ error: 'API key not configured' }) };
 
   var messages = (body.messages || []).slice(-14);
+  var tally = body.tally || {};
+
+  // Build known context block from form data so AI doesn't re-ask these
+  var known = [];
+  if (tally.business) known.push('Business name: ' + tally.business);
+  if (tally.service)  known.push('Service interested in: ' + tally.service);
+  if (tally.pages)    known.push('Approximate pages / scope: ' + tally.pages);
+  if (tally.budget)   known.push('Budget range: ' + tally.budget);
+  if (tally.deadline) known.push('Ideal launch date: ' + tally.deadline);
+
+  var knownBlock = known.length > 0
+    ? '\n\nThe client has already provided the following — do NOT ask about these again:\n' + known.map(function(l) { return '- ' + l; }).join('\n')
+    : '';
+
+  var system = SYSTEM_PROMPT + knownBlock;
 
   try {
     var res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -68,7 +93,7 @@ async function handleChat(body) {
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
         max_tokens: 500,
-        system: SYSTEM_PROMPT,
+        system: system,
         messages: messages
       })
     });

@@ -36,9 +36,32 @@
     }
     .thanks-icon svg { width: 24px; height: 24px; fill: var(--green); }
     .thanks-card h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
-    .thanks-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
-    .thanks-card p:last-of-type { margin-bottom: 1.5rem; }
-    .thanks-note { font-size: 0.8rem; color: var(--muted2); margin-top: 1.25rem; }
+    .thanks-card > p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
+    .next-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+    .next-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 1.1rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.875rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .next-option:hover { border-color: var(--green-border); background: var(--green-dim); }
+    .next-option-text strong { display: block; font-weight: 600; margin-bottom: 0.1rem; }
+    .next-option-text span { color: var(--muted); font-size: 0.8rem; }
+    .next-option-arrow { margin-left: auto; color: var(--muted2); }
+    .thanks-note { font-size: 0.8rem; color: var(--muted2); margin-top: 1rem; }
     .thanks-note a { color: var(--green); text-decoration: none; }
     .thanks-note a:hover { text-decoration: underline; }
   </style>
@@ -54,13 +77,31 @@
   <div class="thanks-wrap">
     <div class="thanks-card">
       <div class="thanks-icon">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
       </div>
       <h1>Thanks — we've received your enquiry</h1>
-      <p>We've sent you an email with a link to tell us a bit more about your project. It takes about 5 minutes and is completely optional — it just helps us write a more accurate proposal.</p>
-      <p>If you'd rather skip that, no problem. We'll review your form and be in touch within 1–2 business days.</p>
+      <p>Check your email — we've sent a starting estimate and two ways to go deeper so Jesse can put together your proposal.</p>
+      <p>In the meantime, choose what works best for you:</p>
+
+      <div class="next-options">
+        <a href="https://cal.com/southstack" target="_blank" rel="noopener" class="next-option">
+          <div class="next-option-text">
+            <strong>Book a 20-minute call</strong>
+            <span>Talk through the project with Jesse directly</span>
+          </div>
+          <span class="next-option-arrow">→</span>
+        </a>
+        <a href="/discovery" class="next-option">
+          <div class="next-option-text">
+            <strong>Chat with our AI</strong>
+            <span>Answer a few questions at your own pace — about 5 minutes</span>
+          </div>
+          <span class="next-option-arrow">→</span>
+        </a>
+      </div>
+
       <a href="/" class="btn btn-outline">Back to SouthStack</a>
-      <p class="thanks-note">No email? Check your spam folder or <a href="mailto:hello@southstack.co.nz">email us directly</a>.</p>
+      <p class="thanks-note">No email? Check your spam or <a href="mailto:hello@southstack.co.nz">contact us directly</a>.</p>
     </div>
   </div>
 </body>
