@@ -213,31 +213,7 @@
   Having trouble? <a href="https://tally.so/r/44opgd" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Open the form directly →</a>
 </p>
 <p style="margin-top:0.5rem;font-size:0.78rem;color:var(--muted2)">After you submit, you'll see an instant estimate and get an email with next steps.</p>
-<script>
-  // Load Tally only after cookie consent to avoid setting third-party cookies
-  // before the user has accepted. Falls back gracefully — the iframe still
-  // renders via the data-tally-src attribute once consent is given.
-  (function() {
-    function loadTally() {
-      if (window._tallyLoaded) return;
-      window._tallyLoaded = true;
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://tally.so/widgets/embed.js';
-      document.head.appendChild(s);
-    }
-    // If already consented (returning visitor), load immediately
-    if (localStorage.getItem('ss-cookie-consent') === 'accepted') {
-      loadTally();
-    }
-    // Otherwise wait for the accept button
-    var _origAccept = window.cookieAccept;
-    window.cookieAccept = function() {
-      if (_origAccept) _origAccept();
-      loadTally();
-    };
-  })();
-</script>
+<script async src="https://tally.so/widgets/embed.js"></script>
         </div>
       </div>
     </div>
