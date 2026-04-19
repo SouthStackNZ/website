@@ -37,31 +37,46 @@
     .thanks-icon svg { width: 24px; height: 24px; fill: var(--green); }
     .thanks-card h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
     .thanks-card > p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
-    .next-options {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin: 1.5rem 0;
+    .thanks-card > p:last-of-type { margin-bottom: 1.5rem; }
+    .estimate-card {
+      background: var(--surface2);
+      border: 1px solid var(--green-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
       text-align: left;
     }
-    .next-option {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.9rem 1.1rem;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 0.875rem;
-      transition: border-color 0.2s, background 0.2s;
+    .estimate-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      margin-bottom: 0.4rem;
     }
-    .next-option:hover { border-color: var(--green-border); background: var(--green-dim); }
-    .next-option-text strong { display: block; font-weight: 600; margin-bottom: 0.1rem; }
-    .next-option-text span { color: var(--muted); font-size: 0.8rem; }
-    .next-option-arrow { margin-left: auto; color: var(--muted2); }
-    .thanks-note { font-size: 0.8rem; color: var(--muted2); margin-top: 1rem; }
+    .estimate-service { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.2rem; }
+    .estimate-price { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+    .estimate-price span { font-size: 0.85rem; font-weight: 400; color: var(--muted); }
+    .estimate-timeline { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+    .estimate-detail {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+    .estimate-note {
+      font-size: 0.78rem;
+      color: var(--muted2);
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .estimate-flag {
+      font-size: 0.78rem;
+      color: #e8a535;
+      margin-top: 0.5rem;
+    }
+    .thanks-note { font-size: 0.8rem; color: var(--muted2); margin-top: 1.25rem; }
     .thanks-note a { color: var(--green); text-decoration: none; }
     .thanks-note a:hover { text-decoration: underline; }
   </style>
@@ -79,30 +94,148 @@
       <div class="thanks-icon">
         <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
       </div>
-      <h1>Thanks — we've received your enquiry</h1>
-      <p>Check your email — we've sent a starting estimate and two ways to go deeper so Jesse can put together your proposal.</p>
-      <p>In the meantime, choose what works best for you:</p>
+      <h1 id="thanks-heading">Thanks — we've received your enquiry</h1>
 
-      <div class="next-options">
-        <a href="https://cal.com/southstack" target="_blank" rel="noopener" class="next-option">
-          <div class="next-option-text">
-            <strong>Book a 20-minute call</strong>
-            <span>Talk through the project with Jesse directly</span>
-          </div>
-          <span class="next-option-arrow">→</span>
-        </a>
-        <a href="/discovery" class="next-option">
-          <div class="next-option-text">
-            <strong>Chat with our AI</strong>
-            <span>Answer a few questions at your own pace — about 5 minutes</span>
-          </div>
-          <span class="next-option-arrow">→</span>
-        </a>
-      </div>
+      <div id="estimate-section"></div>
 
+      <p>Check your email — we've sent you next steps on how to move forward.</p>
       <a href="/" class="btn btn-outline">Back to SouthStack</a>
       <p class="thanks-note">No email? Check your spam or <a href="mailto:hello@southstack.co.nz">contact us directly</a>.</p>
     </div>
   </div>
+
+  <script>
+    (function() {
+      var service = sessionStorage.getItem('ss-service') || '';
+      var business = sessionStorage.getItem('ss-business') || '';
+      var name = sessionStorage.getItem('ss-name') || '';
+      var pages = sessionStorage.getItem('ss-pages') || '';
+      var budget = sessionStorage.getItem('ss-budget') || '';
+
+      // Personalise heading
+      if (name) {
+        var first = name.split(' ')[0];
+        document.getElementById('thanks-heading').textContent = 'Thanks ' + first + ' \u2014 we\u2019ve received your enquiry';
+      }
+
+      // Estimate calculation
+      function calcEstimate(service, pages, budget) {
+        var base = 0;
+        var label = '';
+        var suffix = '+ GST';
+        var timeline = '';
+        var detail = '';
+        var flag = '';
+
+        // Base prices by service type
+        if (service.indexOf('Astro') > -1) {
+          label = 'Astro marketing site';
+          base = 350;
+          timeline = '3\u20136 weeks';
+
+          // Pages adjustment
+          if (pages === '7\u201310' || pages === '7-10') {
+            base = 550;
+            detail = 'Includes extra pages beyond the standard 8-page scope.';
+            timeline = '4\u20138 weeks';
+          } else if (pages === '10+') {
+            base = 750;
+            detail = 'Larger scope \u2014 we\u2019ll confirm exact pricing in your proposal.';
+            timeline = '6\u201310 weeks';
+          }
+
+        } else if (service.indexOf('Next.js') > -1) {
+          label = 'Next.js business platform';
+          base = 3500;
+          timeline = '6\u201316 weeks';
+
+          if (pages === '10+') {
+            base = 6000;
+            detail = 'Complex multi-feature platform \u2014 scoped individually.';
+            timeline = '10\u201316 weeks';
+          }
+
+        } else if (service.indexOf('Redesign') > -1 || service.indexOf('rebuild') > -1) {
+          label = 'Site redesign or rebuild';
+          base = 350;
+          timeline = 'Confirmed after discovery';
+          detail = 'Starting price depends on scope \u2014 we\u2019ll confirm after learning more about the existing site.';
+
+        } else if (service.indexOf('maintenance') > -1 || service.indexOf('Maintenance') > -1) {
+          label = 'Maintenance retainer';
+          base = 150;
+          suffix = '/mo + GST';
+          timeline = 'Min. 3-month commitment';
+
+        } else if (service.indexOf('Data') > -1 || service.indexOf('AWS') > -1) {
+          label = 'Data / AWS consulting';
+          base = 500;
+          timeline = 'Scoped after discovery';
+
+        } else if (service.indexOf('RAG') > -1 || service.indexOf('AI assistant') > -1) {
+          label = 'RAG AI assistant';
+          base = 800;
+          timeline = '1\u20133 weeks';
+
+        } else if (service.indexOf('Not sure') > -1) {
+          return { label: 'We\u2019ll figure it out together', price: '', suffix: '', timeline: 'Check your email for next steps', detail: '', flag: '' };
+
+        } else {
+          return null;
+        }
+
+        // Budget mismatch check
+        if (budget && base > 0) {
+          var budgetMax = 0;
+          if (budget.indexOf('Under') > -1 && budget.indexOf('2,500') > -1) budgetMax = 2500;
+          else if (budget.indexOf('2,500') > -1 && budget.indexOf('5,000') > -1) budgetMax = 5000;
+          else if (budget.indexOf('5,000') > -1 && budget.indexOf('10,000') > -1) budgetMax = 10000;
+          else if (budget.indexOf('10,000') > -1 && budget.indexOf('20,000') > -1) budgetMax = 20000;
+
+          if (budgetMax > 0 && base > budgetMax) {
+            flag = 'Your budget range is below our starting price for this service \u2014 we\u2019ll discuss options in your proposal.';
+          }
+        }
+
+        return {
+          label: label,
+          price: 'from $' + base.toLocaleString(),
+          suffix: suffix,
+          timeline: timeline,
+          detail: detail,
+          flag: flag
+        };
+      }
+
+      var section = document.getElementById('estimate-section');
+      var est = calcEstimate(service, pages, budget);
+
+      if (est && est.price) {
+        var bizLine = est.label + (business ? ' \u2014 ' + business : '');
+        var html =
+          '<div class="estimate-card">' +
+            '<div class="estimate-label">Starting estimate</div>' +
+            '<div class="estimate-service">' + bizLine + '</div>' +
+            '<div class="estimate-price">' + est.price + ' <span>' + est.suffix + '</span></div>' +
+            '<div class="estimate-timeline">' + est.timeline + '</div>';
+        if (est.detail) {
+          html += '<div class="estimate-detail">' + est.detail + '</div>';
+        }
+        if (est.flag) {
+          html += '<div class="estimate-flag">' + est.flag + '</div>';
+        }
+        html += '<div class="estimate-note">This is a starting figure. Your written proposal will include a fixed price and full scope \u2014 no surprises.</div>';
+        html += '</div>';
+        section.innerHTML = html;
+      }
+
+      // Clean up
+      sessionStorage.removeItem('ss-service');
+      sessionStorage.removeItem('ss-business');
+      sessionStorage.removeItem('ss-name');
+      sessionStorage.removeItem('ss-pages');
+      sessionStorage.removeItem('ss-budget');
+    })();
+  </script>
 </body>
 </html>
