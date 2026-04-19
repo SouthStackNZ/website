@@ -106,11 +106,12 @@
 
   <script>
     (function() {
-      var service = sessionStorage.getItem('ss-service') || '';
-      var business = sessionStorage.getItem('ss-business') || '';
-      var name = sessionStorage.getItem('ss-name') || '';
-      var pages = sessionStorage.getItem('ss-pages') || '';
-      var budget = sessionStorage.getItem('ss-budget') || '';
+      var params = new URLSearchParams(window.location.search);
+      var service = decodeURIComponent(params.get('service') || '');
+      var business = decodeURIComponent(params.get('biz') || '');
+      var name = decodeURIComponent(params.get('name') || '');
+      var pages = decodeURIComponent(params.get('pages') || '');
+      var budget = decodeURIComponent(params.get('budget') || '');
 
       // Personalise heading
       if (name) {
@@ -127,13 +128,11 @@
         var detail = '';
         var flag = '';
 
-        // Base prices by service type
         if (service.indexOf('Astro') > -1) {
           label = 'Astro marketing site';
           base = 350;
           timeline = '3\u20136 weeks';
 
-          // Pages adjustment
           if (pages === '7\u201310' || pages === '7-10') {
             base = 550;
             detail = 'Includes extra pages beyond the standard 8-page scope.';
@@ -228,13 +227,6 @@
         html += '</div>';
         section.innerHTML = html;
       }
-
-      // Clean up
-      sessionStorage.removeItem('ss-service');
-      sessionStorage.removeItem('ss-business');
-      sessionStorage.removeItem('ss-name');
-      sessionStorage.removeItem('ss-pages');
-      sessionStorage.removeItem('ss-budget');
     })();
   </script>
 </body>

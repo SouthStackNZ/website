@@ -214,34 +214,6 @@
 </p>
 <p style="margin-top:0.5rem;font-size:0.78rem;color:var(--muted2)">After you submit, you'll see an instant estimate and get an email with next steps.</p>
 <script>
-  // Capture Tally form submission data and store for thanks page estimate
-  window.addEventListener('message', function(e) {
-    if (e.data && e.data.event === 'Tally.FormSubmitted') {
-      var fields = e.data.payload && e.data.payload.fields;
-      if (fields) {
-        for (var i = 0; i < fields.length; i++) {
-          var f = fields[i];
-          if (f.label && f.label.toLowerCase().indexOf('looking for') > -1) {
-            sessionStorage.setItem('ss-service', f.value || f.answer || '');
-          }
-          if (f.label && f.label.toLowerCase().indexOf('business name') > -1) {
-            sessionStorage.setItem('ss-business', f.value || f.answer || '');
-          }
-          if (f.label && f.label.toLowerCase().indexOf('your name') > -1) {
-            sessionStorage.setItem('ss-name', f.value || f.answer || '');
-          }
-          if (f.label && (f.label.toLowerCase().indexOf('pages') > -1 || f.label.toLowerCase().indexOf('scope') > -1)) {
-            sessionStorage.setItem('ss-pages', f.value || f.answer || '');
-          }
-          if (f.label && f.label.toLowerCase().indexOf('budget') > -1) {
-            sessionStorage.setItem('ss-budget', f.value || f.answer || '');
-          }
-        }
-      }
-    }
-  });
-</script>
-<script>
   // Load Tally only after cookie consent to avoid setting third-party cookies
   // before the user has accepted. Falls back gracefully — the iframe still
   // renders via the data-tally-src attribute once consent is given.
