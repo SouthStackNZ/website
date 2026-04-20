@@ -24,7 +24,8 @@ COVER THESE AREAS (follow the conversation naturally, don't go in rigid order):
 8. Do they have a hosting preference, or are they happy with SouthStack's recommended setup?
 9. Any specific features or integrations needed — e.g. bookings, payments, member login, e-commerce?
 10. Any websites they like the look or feel of? (design direction)
-11. Any concerns, constraints, or things we should know upfront?
+11. Do they have a budget range in mind for this project?
+12. Any concerns, constraints, or things we should know upfront?
 
 After 6-9 exchanges, when you feel you have enough to write a good brief, say something like: "I think I have a really good picture of what you're after. Is there anything else you'd like to add before I put the summary together?"
 
@@ -42,7 +43,8 @@ Domain: [situation]
 Hosting: [preference or "SouthStack recommended"]
 Features / integrations: [specific requirements, or "None mentioned"]
 Design direction: [any sites they liked or style notes, or "Not discussed"]
-Constraints: [budget notes, timeline pressure, tech requirements, or "None mentioned"]
+Budget: [their range or "Not discussed"]
+Constraints: [timeline pressure, tech requirements, or "None mentioned"]
 Notes: [anything else worth knowing]
 
 Do not include any text before or after the SUMMARY block when producing the final summary.`;
@@ -72,7 +74,6 @@ async function handleChat(body) {
   if (tally.business) known.push('Business name: ' + tally.business);
   if (tally.service)  known.push('Service interested in: ' + tally.service);
   if (tally.pages)    known.push('Approximate pages / scope: ' + tally.pages);
-  if (tally.budget)   known.push('Budget range: ' + tally.budget);
   if (tally.deadline) known.push('Ideal launch date: ' + tally.deadline);
 
   var knownBlock = known.length > 0

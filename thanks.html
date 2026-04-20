@@ -71,11 +71,6 @@
       padding-top: 0.75rem;
       border-top: 1px solid var(--border);
     }
-    .estimate-flag {
-      font-size: 0.78rem;
-      color: #e8a535;
-      margin-top: 0.5rem;
-    }
     .thanks-note { font-size: 0.8rem; color: var(--muted2); margin-top: 1.25rem; }
     .thanks-note a { color: var(--green); text-decoration: none; }
     .thanks-note a:hover { text-decoration: underline; }
@@ -111,7 +106,6 @@
       var business = decodeURIComponent(params.get('biz') || '');
       var name = decodeURIComponent(params.get('name') || '');
       var pages = decodeURIComponent(params.get('pages') || '');
-      var budget = decodeURIComponent(params.get('budget') || '');
 
       // Personalise heading
       if (name) {
@@ -119,14 +113,13 @@
         document.getElementById('thanks-heading').textContent = 'Thanks ' + first + ' \u2014 we\u2019ve received your enquiry';
       }
 
-      // Estimate calculation
-      function calcEstimate(service, pages, budget) {
+      // Estimate calculation based on service type + pages
+      function calcEstimate(service, pages) {
         var base = 0;
         var label = '';
         var suffix = '+ GST';
         var timeline = '';
         var detail = '';
-        var flag = '';
 
         if (service.indexOf('Astro') > -1) {
           label = 'Astro marketing site';
@@ -177,23 +170,10 @@
           timeline = '1\u20133 weeks';
 
         } else if (service.indexOf('Not sure') > -1) {
-          return { label: 'We\u2019ll figure it out together', price: '', suffix: '', timeline: 'Check your email for next steps', detail: '', flag: '' };
+          return null;
 
         } else {
           return null;
-        }
-
-        // Budget mismatch check
-        if (budget && base > 0) {
-          var budgetMax = 0;
-          if (budget.indexOf('Under') > -1 && budget.indexOf('2,500') > -1) budgetMax = 2500;
-          else if (budget.indexOf('2,500') > -1 && budget.indexOf('5,000') > -1) budgetMax = 5000;
-          else if (budget.indexOf('5,000') > -1 && budget.indexOf('10,000') > -1) budgetMax = 10000;
-          else if (budget.indexOf('10,000') > -1 && budget.indexOf('20,000') > -1) budgetMax = 20000;
-
-          if (budgetMax > 0 && base > budgetMax) {
-            flag = 'Your budget range is below our starting price for this service \u2014 we\u2019ll discuss options in your proposal.';
-          }
         }
 
         return {
@@ -201,15 +181,14 @@
           price: 'from $' + base.toLocaleString(),
           suffix: suffix,
           timeline: timeline,
-          detail: detail,
-          flag: flag
+          detail: detail
         };
       }
 
       var section = document.getElementById('estimate-section');
-      var est = calcEstimate(service, pages, budget);
+      var est = calcEstimate(service, pages);
 
-      if (est && est.price) {
+      if (est) {
         var bizLine = est.label + (business ? ' \u2014 ' + business : '');
         var html =
           '<div class="estimate-card">' +
@@ -219,9 +198,6 @@
             '<div class="estimate-timeline">' + est.timeline + '</div>';
         if (est.detail) {
           html += '<div class="estimate-detail">' + est.detail + '</div>';
-        }
-        if (est.flag) {
-          html += '<div class="estimate-flag">' + est.flag + '</div>';
         }
         html += '<div class="estimate-note">This is a starting figure. Your written proposal will include a fixed price and full scope \u2014 no surprises.</div>';
         html += '</div>';
