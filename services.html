@@ -264,6 +264,7 @@
       <li><a href="/about.html">About</a></li>
       <li><a href="/work.html">Work</a></li>
       <li><a href="/pricing.html">Pricing</a></li>
+      <li><a href="/blog.html">Blog</a></li>
       <li><a href="/contact.html" class="nav-cta">Get in touch</a></li>
     </ul>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
@@ -278,13 +279,13 @@
 
   <section style="padding-top:0">
 
-    <!-- TIER 1 -->
+    <!-- TIER 1: ASTRO -->
     <div class="service-block">
       <div class="service-header">
         <div class="service-emoji">⚡</div>
         <div class="service-header-text">
           <h3>Astro Marketing Site</h3>
-          <p>Lightning-fast static sites for small NZ businesses — cafes, trades, professional services, local brands. Built in Astro for near-instant load times and outstanding SEO performance. Every site comes with a CMS so you or your team can update text, images, and events without touching code — using either <a href="https://decapcms.org" target="_blank" rel="noopener" style="color:var(--green)">Decap CMS</a> (free, simple) or <a href="https://sanity.io" target="_blank" rel="noopener" style="color:var(--green)">Sanity</a> (free tier, better for multiple editors).</p>
+          <p>Lightning-fast static sites for small NZ businesses — cafes, trades, professional services, local brands. Built in Astro for near-instant load times and outstanding SEO. Every site comes with a CMS so you or your team can update text, images, and events without touching code — using either <a href="https://decapcms.org" target="_blank" rel="noopener" style="color:var(--green)">Decap CMS</a> (free, simple) or <a href="https://sanity.io" target="_blank" rel="noopener" style="color:var(--green)">Sanity</a> (free tier, better for multiple editors).</p>
         </div>
       </div>
       <div class="service-body">
@@ -308,8 +309,7 @@
             <li>Astro</li>
             <li>Tailwind CSS</li>
             <li>Decap CMS or Sanity</li>
-            <li>Cloudflare Pages</li>
-            <li>Cloudflare DNS</li>
+            <li>Netlify or Cloudflare Pages</li>
           </ul>
         </div>
       </div>
@@ -330,13 +330,13 @@
       </div>
     </div>
 
-    <!-- TIER 2 -->
+    <!-- TIER 2: NEXT.JS -->
     <div class="service-block">
       <div class="service-header">
         <div class="service-emoji">🏗️</div>
         <div class="service-header-text">
           <h3>Next.js Business Platform</h3>
-          <p>Full-stack React applications for businesses that need more than a brochure — e-commerce, booking systems, member portals, dashboards, and SaaS MVPs.</p>
+          <p>Custom web applications for businesses that need to do things online — not just display information. Customer portals, booking systems, membership platforms, internal dashboards, and SaaS products. If you just need a simple shop, we'll point you to Shopify; if you just need bookings, tools like Cal.com work out of the box. We build custom only when off-the-shelf tools don't fit.</p>
         </div>
       </div>
       <div class="service-body">
@@ -348,8 +348,8 @@
             <li>Server-side rendering &amp; API routes</li>
             <li>Database integration</li>
             <li>User authentication (if needed)</li>
+            <li>Stripe payments (if needed)</li>
             <li>WCAG 2.2 AA accessibility</li>
-            <li>Performance optimisation</li>
             <li>Staging environment</li>
             <li>Loom walkthrough on handover</li>
           </ul>
@@ -368,7 +368,7 @@
       <div class="service-meta">
         <div class="service-meta-item">
           <div class="service-meta-label">Best for</div>
-          <div class="service-meta-val">E-commerce, bookings, dashboards, SaaS</div>
+          <div class="service-meta-val">Portals, bookings, dashboards, SaaS MVPs</div>
         </div>
         <div class="service-meta-item">
           <div class="service-meta-label">Timeline</div>
@@ -376,39 +376,189 @@
         </div>
         <div class="service-meta-item">
           <div class="service-meta-label">Starting from</div>
-          <div class="service-meta-val">$6,000 + GST</div>
+          <div class="service-meta-val">$3,500 + GST</div>
         </div>
         <a href="/contact.html" class="btn btn-primary" style="font-size:0.875rem;padding:0.6rem 1.25rem">Get a quote →</a>
       </div>
     </div>
 
-    <!-- RETAINER -->
+    <!-- TIER 3: AI INTEGRATION -->
     <div class="service-block">
       <div class="service-header">
-        <div class="service-emoji">🔧</div>
+        <div class="service-emoji">🤖</div>
         <div class="service-header-text">
-          <h3>Maintenance &amp; Retainer</h3>
-          <p>Ongoing support, security updates, and content changes so your site stays fast, secure, and up to date. Retainer clients get priority scheduling.</p>
+          <h3>AI Integration</h3>
+          <p>Custom AI tools built on your content and connected to your systems. From a RAG chatbot that answers only from your approved content, to AI-assisted workflows that process enquiries and extract data, to tools that connect AI to your calendar, CRM, or docs. Scoped per project.</p>
+        </div>
+      </div>
+      <div class="service-body">
+        <div class="service-includes">
+          <h4>What we build</h4>
+          <ul>
+            <li>RAG chatbots — answer from your content only, no hallucinations</li>
+            <li>AI-assisted workflows — classify enquiries, extract data, route requests</li>
+            <li>AI content tools — drafts in your brand voice</li>
+            <li>Tool connections — calendar, CRM, email, docs, databases</li>
+            <li>Embedded chat widget matched to your site</li>
+            <li>Fallback to contact form when the bot can't answer</li>
+          </ul>
+        </div>
+        <div class="service-stack">
+          <h4>Tech stack</h4>
+          <ul>
+            <li>Claude API</li>
+            <li>Vector embeddings</li>
+            <li>Supabase pgvector</li>
+            <li>Cloudflare Workers</li>
+          </ul>
+        </div>
+      </div>
+      <div class="service-meta">
+        <div class="service-meta-item">
+          <div class="service-meta-label">Best for</div>
+          <div class="service-meta-val">FAQ automation, support, workflow automation</div>
+        </div>
+        <div class="service-meta-item">
+          <div class="service-meta-label">Timeline</div>
+          <div class="service-meta-val">1–3 weeks</div>
+        </div>
+        <div class="service-meta-item">
+          <div class="service-meta-label">Starting from</div>
+          <div class="service-meta-val">$800 + GST</div>
+        </div>
+        <a href="/contact.html" class="btn btn-primary" style="font-size:0.875rem;padding:0.6rem 1.25rem">Get a quote →</a>
+      </div>
+    </div>
+
+    <!-- TIER 4: CUSTOM API -->
+    <div class="service-block">
+      <div class="service-header">
+        <div class="service-emoji">🔗</div>
+        <div class="service-header-text">
+          <h3>Custom API Development</h3>
+          <p>Connect the systems you already use. Booking forms that create jobs and trigger invoices. Websites that sync with Xero, Stripe, or your POS. Stop copying data between tools manually. If Zapier can handle it, we'll tell you — we build custom when the logic is too complex or the connector doesn't exist.</p>
         </div>
       </div>
       <div class="service-body">
         <div class="service-includes">
           <h4>What's included</h4>
           <ul>
-            <li>Monthly security updates</li>
-            <li>Dependency updates</li>
-            <li>Performance monitoring</li>
+            <li>Serverless functions (Netlify, Cloudflare Workers, or AWS Lambda)</li>
+            <li>Webhook integrations</li>
+            <li>Data transformation between systems</li>
+            <li>Authentication and security</li>
+            <li>Error handling and retry logic</li>
+            <li>Documentation</li>
+          </ul>
+        </div>
+        <div class="service-stack">
+          <h4>Tech stack</h4>
+          <ul>
+            <li>Node.js</li>
+            <li>Netlify Functions</li>
+            <li>Cloudflare Workers</li>
+            <li>AWS Lambda</li>
+            <li>REST APIs</li>
+          </ul>
+        </div>
+      </div>
+      <div class="service-meta">
+        <div class="service-meta-item">
+          <div class="service-meta-label">Best for</div>
+          <div class="service-meta-val">System integrations, automated workflows</div>
+        </div>
+        <div class="service-meta-item">
+          <div class="service-meta-label">Timeline</div>
+          <div class="service-meta-val">1–4 weeks</div>
+        </div>
+        <div class="service-meta-item">
+          <div class="service-meta-label">Starting from</div>
+          <div class="service-meta-val">$500 + GST</div>
+        </div>
+        <a href="/contact.html" class="btn btn-primary" style="font-size:0.875rem;padding:0.6rem 1.25rem">Get a quote →</a>
+      </div>
+    </div>
+
+    <!-- TIER 5: AWS INFRASTRUCTURE -->
+    <div class="service-block">
+      <div class="service-header">
+        <div class="service-emoji">☁️</div>
+        <div class="service-header-text">
+          <h3>AWS Infrastructure</h3>
+          <p>For apps that have outgrown basic hosting. NZ-based databases for data sovereignty, scalable file storage, background processing, CDN delivery, security, monitoring, and cost management. If your site runs fine on Netlify, Vercel, or Cloudflare, you don't need this — AWS is for when you need something those platforms can't provide.</p>
+        </div>
+      </div>
+      <div class="service-body">
+        <div class="service-includes">
+          <h4>What's included</h4>
+          <ul>
+            <li>Architecture planning</li>
+            <li>Database setup (RDS / Aurora)</li>
+            <li>S3 file storage with presigned URLs</li>
+            <li>Lambda functions for background jobs</li>
+            <li>CloudFront CDN</li>
+            <li>VPC, security groups, and IAM roles</li>
+            <li>CloudWatch monitoring and cost alerts</li>
+            <li>Documentation</li>
+          </ul>
+        </div>
+        <div class="service-stack">
+          <h4>Tech stack</h4>
+          <ul>
+            <li>AWS RDS / Aurora</li>
+            <li>S3 &amp; CloudFront</li>
+            <li>Lambda</li>
+            <li>VPC &amp; IAM</li>
+            <li>CloudWatch</li>
+          </ul>
+        </div>
+      </div>
+      <div class="service-meta">
+        <div class="service-meta-item">
+          <div class="service-meta-label">Best for</div>
+          <div class="service-meta-val">NZ data residency, scalable infrastructure</div>
+        </div>
+        <div class="service-meta-item">
+          <div class="service-meta-label">Timeline</div>
+          <div class="service-meta-val">2–6 weeks</div>
+        </div>
+        <div class="service-meta-item">
+          <div class="service-meta-label">Starting from</div>
+          <div class="service-meta-val">$1,500 + GST</div>
+        </div>
+        <a href="/contact.html" class="btn btn-primary" style="font-size:0.875rem;padding:0.6rem 1.25rem">Get a quote →</a>
+      </div>
+    </div>
+
+    <!-- TIER 6: MAINTENANCE -->
+    <div class="service-block">
+      <div class="service-header">
+        <div class="service-emoji">🔧</div>
+        <div class="service-header-text">
+          <h3>Maintenance &amp; Retainer</h3>
+          <p>Ongoing support, security updates, dependency updates, and content changes so your site stays fast, secure, and current. Retainer clients get priority scheduling over one-off projects. New features beyond content changes are scoped and quoted separately.</p>
+        </div>
+      </div>
+      <div class="service-body">
+        <div class="service-includes">
+          <h4>What's included</h4>
+          <ul>
+            <li>Security &amp; dependency updates</li>
+            <li>Framework version updates</li>
+            <li>Compatibility checks after updates</li>
+            <li>Uptime &amp; performance monitoring</li>
             <li>Content changes (hours vary by tier)</li>
-            <li>Priority support response</li>
-            <li>Annual accessibility check</li>
+            <li>Bug fixes across browsers and devices</li>
+            <li>Hosting management (Managed tier)</li>
           </ul>
         </div>
         <div class="service-stack">
           <h4>Tiers</h4>
           <ul>
-            <li>Basic — 1hr changes/mo</li>
-            <li>Standard — 3hrs changes/mo</li>
-            <li>Managed — hosting included</li>
+            <li>Basic — 1hr changes/mo · $150/mo</li>
+            <li>Standard — 3hrs changes/mo · $250/mo</li>
+            <li>Managed — hosting included · $350/mo</li>
+            <li>Response within 2 business days</li>
             <li>Min. 3-month commitment</li>
           </ul>
         </div>
@@ -430,59 +580,27 @@
       </div>
     </div>
 
-    <!-- RAG / AI ASSISTANT -->
-    <div class="service-block">
-      <div class="service-header">
-        <div class="service-emoji">🤖</div>
-        <div class="service-header-text">
-          <h3>RAG AI Assistant</h3>
-          <p>A custom AI chatbot trained on your own content — FAQs, product info, service details, policies — so visitors get instant, accurate answers without waiting for a reply from you. Built using Retrieval-Augmented Generation (RAG), so the bot only answers from what you've given it, not the open internet.</p>
-        </div>
-      </div>
-      <div class="service-body">
-        <div class="service-includes">
-          <h4>What's included</h4>
-          <ul>
-            <li>Knowledge base setup from your content (docs, FAQs, pages)</li>
-            <li>Embedded chat widget — matches your site's style</li>
-            <li>Answers only from your approved content — no hallucinations</li>
-            <li>Fallback to contact form when the bot can't answer</li>
-            <li>Mobile responsive widget</li>
-            <li>Easy content updates — add new docs any time</li>
-          </ul>
-        </div>
-        <div class="service-stack">
-          <h4>Tech stack</h4>
-          <ul>
-            <li>Claude API</li>
-            <li>Vector embeddings</li>
-            <li>Supabase pgvector</li>
-            <li>Cloudflare Workers</li>
-          </ul>
-        </div>
-      </div>
-      <div class="service-meta">
-        <div class="service-meta-item">
-          <div class="service-meta-label">Best for</div>
-          <div class="service-meta-val">FAQ automation, customer support, product info</div>
-        </div>
-        <div class="service-meta-item">
-          <div class="service-meta-label">Timeline</div>
-          <div class="service-meta-val">1–3 weeks</div>
-        </div>
-        <div class="service-meta-item">
-          <div class="service-meta-label">Starting from</div>
-          <div class="service-meta-val">$800 + GST</div>
-        </div>
-        <a href="/contact.html" class="btn btn-primary" style="font-size:0.875rem;padding:0.6rem 1.25rem">Get a quote →</a>
-      </div>
-    </div>
-
-    <!-- DATA COMING SOON -->
+    <!-- COMING SOON: ANDROID -->
     <div class="coming-soon-band">
       <div class="badge">Coming soon</div>
-      <h3>📊 Data &amp; Cloud (AWS)</h3>
-      <p>AWS infrastructure, data pipelines, analytics dashboards (Metabase, Superset), and ML integration for NZ businesses with data they're not using yet. Currently in development alongside AWS and data science studies — available once certifications and portfolio pieces are in place.</p>
+      <h3>📱 Android Apps — Kotlin &amp; Jetpack Compose</h3>
+      <p>Native Android applications built in Kotlin with Jetpack Compose — Google's modern, recommended toolkit. Native performance without the compromises of cross-platform frameworks like React Native or Flutter. Built to work with your existing backend or API.</p>
+      <a href="/contact.html" style="display:inline-block;margin-top:1.25rem;font-size:0.875rem;color:var(--green);text-decoration:none;font-weight:600;">Register interest →</a>
+    </div>
+
+    <!-- COMING SOON: ANALYTICS -->
+    <div class="coming-soon-band">
+      <div class="badge">Coming soon</div>
+      <h3>📊 Analytics &amp; Dashboards</h3>
+      <p>Connect your existing data to visual dashboards so you can see what's happening at a glance — sales, customer growth, conversions, inventory — pulled from your database, spreadsheets, or APIs. Built with Metabase, Power BI, or custom dashboards.</p>
+      <a href="/contact.html" style="display:inline-block;margin-top:1.25rem;font-size:0.875rem;color:var(--green);text-decoration:none;font-weight:600;">Register interest →</a>
+    </div>
+
+    <!-- COMING SOON: DATA SCIENCE -->
+    <div class="coming-soon-band">
+      <div class="badge">Coming soon</div>
+      <h3>🔬 Data Science &amp; ML</h3>
+      <p>Statistical analysis, predictive models, data pipelines, and machine learning for NZ businesses sitting on data they're not using yet. Forecast demand, predict churn, automate classification, find patterns. Built with Python, pandas, scikit-learn, and TensorFlow.</p>
       <a href="/contact.html" style="display:inline-block;margin-top:1.25rem;font-size:0.875rem;color:var(--green);text-decoration:none;font-weight:600;">Register interest →</a>
     </div>
 
@@ -526,6 +644,87 @@
         <div class="process-num">06 — LAUNCH</div>
         <h4>Launch &amp; handover</h4>
         <p>We run a full pre-launch checklist, go live, and hand over everything — including a Loom walkthrough of your CMS. You own the site outright.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ADD-ONS -->
+  <section>
+    <div class="section-label">Optional extras</div>
+    <h2 class="section-title">Add-<span>ons</span></h2>
+    <p class="lead">Available with any project. Mix and match to fit what you need.</p>
+    <div class="included-grid">
+      <div class="included-item">
+        <div class="included-icon">🎨</div>
+        <div>
+          <h4>Logo design — $600</h4>
+          <p>AI-assisted, 3 concepts + 2 revisions.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">✍️</div>
+        <div>
+          <h4>Copywriting — $150/page</h4>
+          <p>Professional copy written for your pages.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">📄</div>
+        <div>
+          <h4>Extra pages — $100 each</h4>
+          <p>Beyond your base scope.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🛒</div>
+        <div>
+          <h4>E-commerce setup — $200</h4>
+          <p>Stripe + product catalogue.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">📅</div>
+        <div>
+          <h4>Booking integration — $800</h4>
+          <p>Custom booking system integration.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">📰</div>
+        <div>
+          <h4>Blog / news CMS — $600</h4>
+          <p>Add a managed blog or news section.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🛍️</div>
+        <div>
+          <h4>Shopify setup — $400</h4>
+          <p>Theme, products, domain, analytics.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">📍</div>
+        <div>
+          <h4>Google Business Profile — $100</h4>
+          <p>Set up your Google Maps / Search listing.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🔍</div>
+        <div>
+          <h4>SEO foundations — $250</h4>
+          <p>Keyword research, local SEO, Search Console.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">✉️</div>
+        <div>
+          <h4>Email setup — $150</h4>
+          <p>Google Workspace or Zoho, domain email + DNS.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -585,6 +784,16 @@
 
   <hr class="divider">
 
+  <!-- NOT OFFERED -->
+  <section>
+    <div class="section-label">Honest about fit</div>
+    <h2 class="section-title">What we <span>don't</span> do</h2>
+    <p class="lead">WordPress, Squarespace, Wix, or any monolithic CMS platform. We build with modern frameworks — you get a faster site, full code ownership, and no plugin bloat.</p>
+    <p class="lead" style="margin-top:1rem">Our CMS options (Decap, Sanity) are headless — they manage content only, your code handles everything else. No PHP updates, no plugin vulnerabilities, no database bloat. And if a project would genuinely be better served by Shopify, Cal.com, or Zapier, we'll tell you — and help you set it up.</p>
+  </section>
+
+  <hr class="divider">
+
   <div class="cta-band" style="background:transparent;border-top:none;border-bottom:none">
     <h2>Not sure which tier is right?</h2>
     <p>Tell us about your project and we'll recommend the right fit.</p>
@@ -614,7 +823,7 @@
         <a href="https://www.youtube.com/channel/UCI_KFkMnMIg4t4MWzhQ2E2w" target="_blank" rel="noopener" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
       </div>
       <ul class="footer-links">
-        <li><a href="/services.html">Services</a></li><li><a href="/about.html">About</a></li><li><a href="/work.html">Work</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/churches.html">Churches</a></li><li><a href="/privacy.html">Privacy Policy</a></li><li><a href="/ethics.html">Code of Ethics</a></li><li><a href="/terms.html">Terms of Use</a></li>
+        <li><a href="/services.html">Services</a></li><li><a href="/about.html">About</a></li><li><a href="/work.html">Work</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/churches.html">Churches</a></li><li><a href="/privacy.html">Privacy Policy</a></li><li><a href="/ethics.html">Code of Ethics</a></li><li><a href="/terms.html">Terms of Use</a></li>
       </ul>
       <p class="footer-copy">&copy; 2026 SOUTHSTACK LIMITED &mdash; ROLLESTON, CANTERBURY, NZ &mdash; NZBN 9429053502803</p>
     </div>
