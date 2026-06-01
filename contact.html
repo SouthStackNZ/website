@@ -263,15 +263,27 @@
     (function() {
       var banner = document.getElementById('cookie-banner');
       var consent = localStorage.getItem('ss-cookie-consent');
-      if (!consent) { setTimeout(function() { banner.classList.add('visible'); }, 800); }
+
+      function getChatToggle() { return document.getElementById('ss-chat-toggle'); }
+      function pushChatUp() { var t = getChatToggle(); if (t) t.style.bottom = (banner.offsetHeight + 16) + 'px'; }
+      function resetChat() { var t = getChatToggle(); if (t) t.style.bottom = ''; }
+
+      if (!consent) {
+        setTimeout(function() {
+          banner.classList.add('visible');
+          setTimeout(pushChatUp, 50);
+        }, 800);
+      }
       window.cookieAccept = function() {
         localStorage.setItem('ss-cookie-consent', 'accepted');
         banner.classList.remove('visible');
+        resetChat();
         loadAnalytics();
       };
       window.cookieDecline = function() {
         localStorage.setItem('ss-cookie-consent', 'declined');
         banner.classList.remove('visible');
+        resetChat();
       };
     })();
   </script>
