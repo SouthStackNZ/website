@@ -1,12 +1,10 @@
 const { getStore } = require('@netlify/blobs');
+const crypto = require('crypto');
 
+// Cryptographically secure token (was Math.random, which is predictable).
+// 16 bytes of base32-ish output gives ample entropy for a PII-gating token.
 function generateToken() {
-  var chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-  var token = '';
-  for (var i = 0; i < 12; i++) {
-    token += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return token;
+  return crypto.randomBytes(12).toString('hex'); // 24 hex chars
 }
 
 exports.handler = async function(event) {
@@ -14,7 +12,7 @@ exports.handler = async function(event) {
 
   var store = getStore({
     name: 'discovery-tokens',
-    siteID: '6a4a1c67-e67c-4c03-9173-748beabf2025',
+    siteID: process.env.NETLIFY_SITE_ID,
     token: process.env.NETLIFY_API_TOKEN
   });
 
@@ -38,13 +36,21 @@ exports.handler = async function(event) {
         body: JSON.stringify({ tally: data.tally })
       };
     } catch (err) {
-      return { statusCode: 500, body: JSON.stringify({ error: 'Failed to retrieve token', detail: err.message }) };
+      // Don't leak err.message to the client.
+      console.error('token GET error:', err);
+      return { statusCode: 500, body: JSON.stringify({ error: 'Failed to retrieve token' }) };
     }
   }
 
   if (event.httpMethod === 'POST') {
+    // FAIL CLOSED: if the secret isn't configured, reject — never allow
+    // unauthenticated writes to the token store (it holds client PII).
     var secret = process.env.TOKEN_SECRET;
-    if (secret && event.headers['x-token-secret'] !== secret) {
+    if (!secret) {
+      console.error('TOKEN_SECRET not configured — rejecting POST');
+      return { statusCode: 503, body: JSON.stringify({ error: 'Service unavailable' }) };
+    }
+    if (event.headers['x-token-secret'] !== secret) {
       return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorised' }) };
     }
 
@@ -87,9 +93,20 @@ exports.handler = async function(event) {
         })
       };
     } catch (err) {
-      return { statusCode: 500, body: JSON.stringify({ error: 'Failed to store token', detail: err.message }) };
+      console.error('token POST error:', err);
+      return { statusCode: 500, body: JSON.stringify({ error: 'Failed to store token' }) };
     }
   }
 
   return { statusCode: 405, body: 'Method Not Allowed' };
+};
+
+// Code-based rate limiting (works on all Netlify plans).
+// Token creation/lookup is cheap but PII-bearing — cap it per IP.
+exports.config = {
+  rateLimit: {
+    windowSize: 60,
+    windowLimit: 20,
+    aggregateBy: ['ip']
+  }
 };

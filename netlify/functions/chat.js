@@ -16,8 +16,21 @@ exports.handler = async function(event) {
   }
 
   var messages = body.messages;
-  if (!messages || !Array.isArray(messages)) {
+  if (!messages || !Array.isArray(messages) || messages.length === 0) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Missing messages' }) };
+  }
+
+  // Validate each message's shape so a malformed request fails here
+  // instead of after a paid Anthropic call.
+  var valid = messages.every(function(m) {
+    return m
+      && (m.role === 'user' || m.role === 'assistant')
+      && typeof m.content === 'string'
+      && m.content.length > 0
+      && m.content.length <= 2000;
+  });
+  if (!valid) {
+    return { statusCode: 400, body: JSON.stringify({ error: 'Invalid message format' }) };
   }
 
   if (messages.length > 10) {
@@ -106,15 +119,35 @@ ${KNOWLEDGE_BASE}`;
 
     var data = await response.json();
 
+    // Surface upstream errors with their real status instead of a fake 200.
+    if (!response.ok) {
+      console.error('Anthropic API error:', response.status, data && data.error);
+      return {
+        statusCode: response.status,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: 'AI service error' })
+      };
+    }
+
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     };
   } catch (err) {
+    console.error('chat fetch error:', err);
     return {
-      statusCode: 500,
+      statusCode: 502,
       body: JSON.stringify({ error: 'Failed to reach AI service' })
     };
+  }
+};
+
+// Code-based rate limiting (all plans). Protects the Anthropic bill from abuse.
+exports.config = {
+  rateLimit: {
+    windowSize: 60,
+    windowLimit: 20,
+    aggregateBy: ['ip']
   }
 };

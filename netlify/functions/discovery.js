@@ -99,6 +99,13 @@ async function handleChat(body) {
     });
 
     var data = await res.json();
+
+    // Surface upstream errors instead of pretending success.
+    if (!res.ok) {
+      console.error('Anthropic API error:', res.status, data && data.error);
+      return { statusCode: res.status, body: JSON.stringify({ error: 'AI service error' }) };
+    }
+
     var reply = data.content && data.content[0] && data.content[0].text
       ? data.content[0].text
       : 'Sorry, something went wrong.';
@@ -119,6 +126,7 @@ async function handleChat(body) {
       body: JSON.stringify({ reply: reply })
     };
   } catch (err) {
+    console.error('discovery chat error:', err);
     return { statusCode: 502, body: JSON.stringify({ error: 'Upstream error' }) };
   }
 }
@@ -210,7 +218,8 @@ async function handleSubmit(body) {
       body: JSON.stringify({ ok: true })
     };
   } catch (err) {
-    return { statusCode: 502, body: JSON.stringify({ error: 'Notion error', detail: err.message }) };
+    console.error('discovery submit (Notion) error:', err);
+    return { statusCode: 502, body: JSON.stringify({ error: 'Notion error' }) };
   }
 }
 
@@ -221,3 +230,12 @@ function notionHeaders(key) {
     'Content-Type': 'application/json'
   };
 }
+
+// Code-based rate limiting (all plans). Discovery hits Anthropic + Notion.
+exports.config = {
+  rateLimit: {
+    windowSize: 60,
+    windowLimit: 20,
+    aggregateBy: ['ip']
+  }
+};
