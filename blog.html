@@ -143,7 +143,7 @@
     var catLabels = { web: 'Web Development', ai: 'AI', business: 'Business', guides: 'Guides' };
 
     fetch(url)
-      .then(function (res) { return res.json(); })
+      .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
       .then(function (data) {
         var posts = (data && data.result) || [];
         if (!posts.length) {
