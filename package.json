@@ -2,11 +2,18 @@
   "name": "southstack",
   "type": "module",
   "version": "1.0.0",
-  "scripts": { "dev": "astro dev", "build": "astro build", "preview": "astro preview" },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
   "dependencies": {
     "astro": "^6.4.3",
     "@tailwindcss/vite": "^4.1.0",
-    "tailwindcss": "^4.1.0"
+    "tailwindcss": "^4.1.0",
+    "@netlify/blobs": "^10.7.4"
   },
-  "overrides": { "vite": "^7" }
+  "overrides": {
+    "vite": "^7"
+  }
 }
