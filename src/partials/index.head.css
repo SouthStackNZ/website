@@ -37,7 +37,7 @@
 
     .hero-content { max-width: 680px; }
 
-    .hero h1 {
+    .hero :is(h1,h2,h3,h4,h5,h6) {
       font-size: clamp(2.8rem, 8vw, 5rem);
       font-weight: 800;
       letter-spacing: -0.04em;
@@ -91,7 +91,7 @@
     }
 
     /* SERVICES PREVIEW */
-    .service-card h3 {
+    .service-card :is(h1,h2,h3,h4,h5,h6) {
       font-size: 1.1rem;
       font-weight: 700;
       margin: 1rem 0 0.5rem;
@@ -122,7 +122,7 @@
       background: var(--surface);
     }
 
-    .why-item h4 {
+    .why-item :is(h1,h2,h3,h4,h5,h6) {
       font-size: 0.95rem;
       font-weight: 700;
       margin: 0.75rem 0 0.4rem;
@@ -145,7 +145,7 @@
       text-align: center;
     }
 
-    .cta-band h2 {
+    .cta-band :is(h1,h2,h3,h4,h5,h6) {
       font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 800;
       letter-spacing: -0.03em;

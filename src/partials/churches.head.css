@@ -5,7 +5,7 @@
       margin: 0 auto;
     }
 
-    .church-hero h1 {
+    .church-hero :is(h1,h2,h3,h4,h5,h6) {
       font-size: clamp(2.2rem, 6vw, 3.75rem);
       font-weight: 800;
       letter-spacing: -0.03em;
@@ -65,7 +65,7 @@
       padding: 1.75rem;
     }
 
-    .offer-card h4 {
+    .offer-card :is(h1,h2,h3,h4,h5,h6) {
       font-size: 1rem;
       font-weight: 700;
       margin: 0.75rem 0 0.5rem;
@@ -88,7 +88,7 @@
       margin-top: 3rem;
     }
 
-    .pricing-note h3 {
+    .pricing-note :is(h1,h2,h3,h4,h5,h6) {
       font-size: 1.25rem;
       font-weight: 700;
       margin-bottom: 0.75rem;
@@ -116,7 +116,7 @@
       border-radius: 14px;
     }
 
-    .example-card h4 {
+    .example-card :is(h1,h2,h3,h4,h5,h6) {
       font-size: 0.95rem;
       font-weight: 700;
       margin: 0.5rem 0 0.4rem;

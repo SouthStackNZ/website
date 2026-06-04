@@ -26,7 +26,7 @@
       margin: 0 auto 1.5rem;
     }
     .thanks-icon svg { width: 24px; height: 24px; fill: var(--green); }
-    .thanks-card h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+    .thanks-card :is(h1,h2,h3,h4,h5,h6) { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
     .thanks-card > p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
     .thanks-card > p:last-of-type { margin-bottom: 1.5rem; }
     .estimate-card {

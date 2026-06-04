@@ -26,7 +26,7 @@
       margin-top: 0.1rem;
     }
 
-    .service-header-text h3 {
+    .service-header-text :is(h1,h2,h3,h4,h5,h6) {
       font-size: 1.4rem;
       font-weight: 700;
       letter-spacing: -0.02em;
@@ -46,8 +46,8 @@
       gap: 2rem;
     }
 
-    .service-includes h4,
-    .service-stack h4 {
+    .service-includes :is(h1,h2,h3,h4,h5,h6),
+    .service-stack :is(h1,h2,h3,h4,h5,h6) {
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.12em;
@@ -126,7 +126,7 @@
       margin-bottom: 1.5rem;
     }
 
-    .coming-soon-band h3 {
+    .coming-soon-band :is(h1,h2,h3,h4,h5,h6) {
       font-size: 1.3rem;
       font-weight: 700;
       margin: 0.75rem 0 0.5rem;
@@ -168,7 +168,7 @@
       margin-bottom: 0.75rem;
     }
 
-    .process-step h4 {
+    .process-step :is(h1,h2,h3,h4,h5,h6) {
       font-size: 1rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
@@ -200,7 +200,7 @@
 
     .included-icon { font-size: 1.25rem; flex-shrink: 0; }
 
-    .included-item h4 {
+    .included-item :is(h1,h2,h3,h4,h5,h6) {
       font-size: 0.9rem;
       font-weight: 700;
       margin-bottom: 0.25rem;

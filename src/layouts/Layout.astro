@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import Chatbot from "../components/Chatbot.astro";
-const { title, description, path="/", ogTitle=title, ogDescription=description, chat=false } = Astro.props;
+const { title, description, path="/", ogTitle=title, ogDescription=description, chat=false, showFooter=true } = Astro.props;
 const canonical = "https://southstack.co.nz" + path;
 const consentChat = "<script is:inline>\n    (function() {\n      var banner = document.getElementById('cookie-banner');\n      var consent = localStorage.getItem('ss-cookie-consent');\n\n      function getChatToggle() { return document.getElementById('ss-chat-toggle'); }\n      function pushChatUp() { var t = getChatToggle(); if (t) t.style.bottom = (banner.offsetHeight + 16) + 'px'; }\n      function resetChat() { var t = getChatToggle(); if (t) t.style.bottom = ''; }\n\n      if (!consent) {\n        setTimeout(function() {\n          banner.classList.add('visible');\n          setTimeout(pushChatUp, 50);\n        }, 800);\n      }\n      window.cookieAccept = function() {\n        localStorage.setItem('ss-cookie-consent', 'accepted');\n        banner.classList.remove('visible');\n        resetChat();\n        loadAnalytics();\n      };\n      window.cookieDecline = function() {\n        localStorage.setItem('ss-cookie-consent', 'declined');\n        banner.classList.remove('visible');\n        resetChat();\n      };\n    })();\n  </script>";
 const consentPlain = "<script is:inline>\n    (function() {\n      var banner = document.getElementById('cookie-banner');\n      var consent = localStorage.getItem('ss-cookie-consent');\n      if (!consent) {\n        setTimeout(function() { banner.classList.add('visible'); }, 800);\n      }\n      window.cookieAccept = function() {\n        localStorage.setItem('ss-cookie-consent', 'accepted');\n        banner.classList.remove('visible');\n        loadAnalytics();\n      };\n      window.cookieDecline = function() {\n        localStorage.setItem('ss-cookie-consent', 'declined');\n        banner.classList.remove('visible');\n      };\n    })();\n  </script>";
@@ -73,7 +73,7 @@ const consentPlain = "<script is:inline>\n    (function() {\n      var banner = 
     <main>
       <slot />
     </main>
-<footer>
+    {showFooter && (<footer>
     <div class="footer-inner">
     <!-- NEWSLETTER -->
     <div class="newsletter">
@@ -108,7 +108,7 @@ const consentPlain = "<script is:inline>\n    (function() {\n      var banner = 
       </ul>
       <p class="footer-copy">&copy; 2026 SOUTHSTACK LIMITED &mdash; ROLLESTON, CANTERBURY, NZ &mdash; NZBN 9429053502803</p>
     </div>
-  </footer>
+  </footer>)}
   </div>
 <!-- COOKIE CONSENT BANNER -->
   <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie consent">

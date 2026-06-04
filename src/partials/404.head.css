@@ -7,7 +7,7 @@
       padding: 4rem 2rem;
     }
     .not-found-inner { max-width: 480px; }
-    .not-found h1 { font-size: clamp(4rem,15vw,8rem); font-weight:800; color:var(--green); line-height:1; letter-spacing:-0.04em; }
-    .not-found h2 { font-size:1.5rem; font-weight:700; margin:0.75rem 0 0.75rem; }
+    .not-found :is(h1,h2,h3,h4,h5,h6) { font-size: clamp(4rem,15vw,8rem); font-weight:800; color:var(--green); line-height:1; letter-spacing:-0.04em; }
+    .not-found :is(h1,h2,h3,h4,h5,h6) { font-size:1.5rem; font-weight:700; margin:0.75rem 0 0.75rem; }
     .not-found p { color:var(--muted); font-size:0.95rem; line-height:1.7; margin-bottom:2rem; }
     .not-found-links { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
