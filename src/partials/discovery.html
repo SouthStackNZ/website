@@ -1,0 +1,57 @@
+<div class="discovery-wrap">
+    <div class="discovery-card">
+      <div class="discovery-header">
+        <div class="discovery-dot"></div>
+        <div class="discovery-header-text">
+          <h2>Project Discovery</h2>
+          <p id="header-sub">SouthStack · Takes about 5 minutes</p>
+        </div>
+      </div>
+
+      <div class="discovery-intro" id="intro-screen">
+        <h1>Tell us about your project</h1>
+        <p>We'll ask you a few questions so SouthStack can put together an accurate proposal — no call needed. Takes about 5 minutes.</p>
+        <div class="discovery-intro-actions">
+          <button class="btn btn-primary" onclick="startChat()">Start</button>
+          <a href="/contact.html" class="skip-link">Skip — I'll wait to hear from SouthStack</a>
+        </div>
+      </div>
+
+      <div class="discovery-messages" id="chat-messages"></div>
+
+      <div class="discovery-input-row" id="input-row">
+        <textarea id="d-input" placeholder="Type your answer…" rows="1" maxlength="600"></textarea>
+        <button id="d-send" aria-label="Send">
+          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </div>
+      <div id="done-btn-row" style="display:none; padding: 0 1.75rem 1.25rem; text-align:center;">
+        <button class="btn btn-outline" style="font-size:0.82rem; padding: 0.4rem 1rem;" onclick="requestSummary()">I'm done — generate my brief</button>
+      </div>
+
+      <div class="discovery-summary" id="summary-screen">
+        <div>
+          <div class="summary-label">Your project summary</div>
+          <div class="summary-box" id="summary-text"></div>
+        </div>
+        <p class="summary-note">Review this before sending — it's what SouthStack will use to write your proposal.</p>
+        <div class="summary-actions">
+          <button class="btn btn-primary" id="submit-btn" onclick="submitToNotion()">Send to SouthStack</button>
+          <button class="btn btn-outline" onclick="goBackToChat()">Edit answers</button>
+        </div>
+      </div>
+
+      <div class="done-state" id="done-screen">
+        <div class="done-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </div>
+        <h3>Thanks, <span id="done-name"></span></h3>
+        <p>SouthStack will review your brief and send a proposal within 1–2 business days.</p>
+        <a href="/" class="btn btn-outline" style="margin-top:0.5rem">Back to SouthStack</a>
+      </div>
+    </div>
+  </div>
+
+  
+</body>
+</html>

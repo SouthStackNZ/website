@@ -1,0 +1,142 @@
+.about-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-intro p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .value-prop {
+      background: var(--surface);
+      border: 1px solid var(--green-border);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .value-prop p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    /* DIFFERENTIATORS */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .diff-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      background: var(--surface);
+    }
+
+    .diff-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0.75rem 0 0.5rem;
+    }
+
+    .diff-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .diff-icon { font-size: 1.5rem; }
+
+    /* AI SECTION */
+    .ai-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+    }
+
+    .ai-section h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .ai-section p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .ai-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .ai-point {
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .ai-point h5 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .ai-point p {
+      font-size: 0.82rem;
+      margin: 0;
+    }
+
+    /* VS TABLE */
+    .vs-grid {
+      margin-top: 3rem;
+    }
+
+    .vs-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .vs-row:first-child {
+      border-top: 1px solid var(--border);
+      background: var(--surface2);
+    }
+
+    .vs-cell {
+      padding: 1rem 1.25rem;
+      font-size: 0.875rem;
+    }
+
+    .vs-row:first-child .vs-cell {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .vs-cell:first-child { color: var(--muted); }
+    .vs-cell:nth-child(2) { color: var(--green); font-weight: 600; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .vs-cell:nth-child(3) { color: var(--muted); }
+
+    @media (max-width: 680px) {
+      .about-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .ai-points { grid-template-columns: 1fr; }
+      .vs-row { grid-template-columns: 1fr; }
+      .vs-cell:nth-child(2) { border-left: none; border-right: none; }
+    }

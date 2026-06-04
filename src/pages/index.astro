@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import body from "../partials/index.html?raw";
+import headcss from "../partials/index.head.css?raw";
+import prenav from "../partials/index.prenav.html?raw";
+import post from "../partials/index.post.html?raw";
+---
+<Layout title={"SouthStack — Web Developer Christchurch, Rolleston &amp; South Island NZ"} description={"Web development studio based in Rolleston, Canterbury. Fast, modern websites and web applications for NZ businesses."} path={"/"} ogTitle={"SouthStack — Web Developer Christchurch &amp; South Island NZ"} ogDescription={"Web development studio based in Rolleston, Canterbury. Fast, modern websites and web applications for NZ businesses."} chat={true}>
+  <Fragment slot="head">
+    <style is:inline set:html={headcss}></style>
+    <script type="application/ld+json" set:html={`{
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "SouthStack",
+    "description": "Web development studio based in Rolleston, Canterbury. Websites, web apps, and e-commerce for NZ businesses.",
+    "url": "https://southstack.co.nz",
+    "areaServed": ["Rolleston","Selwyn","Christchurch","Canterbury","South Island","New Zealand"],
+    "serviceType": ["Web Design","Web Development","E-commerce Development","SEO","API Development"],
+    "address": {"@type":"PostalAddress","addressLocality":"Rolleston","addressRegion":"Canterbury","addressCountry":"NZ"},
+    "sameAs": [
+      "https://www.linkedin.com/company/111956608",
+      "https://www.instagram.com/southstacknz/",
+      "https://x.com/SouthStackNZ",
+      "https://www.youtube.com/channel/UCI_KFkMnMIg4t4MWzhQ2E2w"
+    ]
+  }`}></script>
+  </Fragment>
+  <Fragment slot="prenav" set:html={prenav} />
+  <Fragment set:html={body} />
+  <Fragment slot="post" set:html={post} />
+</Layout>

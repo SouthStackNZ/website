@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+import body from "../partials/work.html?raw";
+import headcss from "../partials/work.head.css?raw";
+import post from "../partials/work.post.html?raw";
+---
+<Layout title={"Work — SouthStack"} description={"Case studies and projects from SouthStack — web development studio based in Rolleston, Canterbury, NZ."} path={"/work"} ogTitle={"Work — SouthStack"} ogDescription={"Case studies and projects from SouthStack — web development studio based in Rolleston, Canterbury, NZ."} chat={false}>
+  <Fragment slot="head">
+    <style is:inline set:html={headcss}></style>
+  </Fragment>
+  <Fragment set:html={body} />
+  <Fragment slot="post" set:html={post} />
+</Layout>

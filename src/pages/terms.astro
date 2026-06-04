@@ -1,0 +1,11 @@
+---
+import Layout from "../layouts/Layout.astro";
+import body from "../partials/terms.html?raw";
+import headcss from "../partials/terms.head.css?raw";
+---
+<Layout title={"Terms of Use — SouthStack"} description={"SouthStack website terms of use — your rights and responsibilities when using southstack.co.nz."} path={"/terms"} ogTitle={"Terms of Use — SouthStack"} ogDescription={"SouthStack website terms of use — your rights and responsibilities when using southstack.co.nz."} chat={false}>
+  <Fragment slot="head">
+    <style is:inline set:html={headcss}></style>
+  </Fragment>
+  <Fragment set:html={body} />
+</Layout>

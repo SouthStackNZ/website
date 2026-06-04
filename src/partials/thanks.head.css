@@ -1,0 +1,67 @@
+.thanks-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.25rem 3rem;
+      text-align: center;
+    }
+    .thanks-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+    }
+    .thanks-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(76,175,125,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    .thanks-icon svg { width: 24px; height: 24px; fill: var(--green); }
+    .thanks-card h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+    .thanks-card > p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
+    .thanks-card > p:last-of-type { margin-bottom: 1.5rem; }
+    .estimate-card {
+      background: var(--surface2);
+      border: 1px solid var(--green-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    .estimate-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+    .estimate-service { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.2rem; }
+    .estimate-price { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+    .estimate-price span { font-size: 0.85rem; font-weight: 400; color: var(--muted); }
+    .estimate-timeline { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+    .estimate-detail {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+    .estimate-note {
+      font-size: 0.78rem;
+      color: var(--muted2);
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .thanks-note { font-size: 0.8rem; color: var(--muted2); margin-top: 1.25rem; }
+    .thanks-note a { color: var(--green); text-decoration: none; }
+    .thanks-note a:hover { text-decoration: underline; }

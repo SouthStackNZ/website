@@ -1,0 +1,141 @@
+---
+import Layout from "../layouts/Layout.astro";
+import body from "../partials/post.html?raw";
+import headcss from "../partials/post.head.css?raw";
+import post from "../partials/post.post.html?raw";
+---
+<Layout title={"Blog — SouthStack"} description={"Insights on web development, AI, and building better websites for New Zealand businesses."} path={"/post"} ogTitle={"Blog — SouthStack"} ogDescription={"Insights on web development, AI, and building better websites for New Zealand businesses."} chat={false}>
+  <Fragment slot="head">
+    <style is:inline set:html={headcss}></style>
+  </Fragment>
+  <Fragment set:html={body} />
+  <Fragment slot="post" set:html={post} />
+  <script is:inline>
+  // ====== CONFIG — replace with your Sanity project details ======
+  var SANITY_PROJECT_ID = 'j8pgoqqb';
+  var SANITY_DATASET = 'production';
+  // ===============================================================
+
+  (function () {
+    var headerEl = document.getElementById('post-header');
+    var bodyEl = document.getElementById('post-body');
+    var stateEl = document.getElementById('blog-state');
+
+    var params = new URLSearchParams(window.location.search);
+    var slug = params.get('slug');
+
+    if (!slug) {
+      stateEl.innerHTML = 'Post not found. <a href="/blog.html" style="color:var(--green)">Back to blog →</a>';
+      return;
+    }
+
+    var query = encodeURIComponent(
+      '*[_type == "post" && slug.current == $slug && publishedAt <= now()][0]{title, excerpt, publishedAt, category, body}'
+    );
+    var paramStr = encodeURIComponent(JSON.stringify(slug));
+    var url = 'https://' + SANITY_PROJECT_ID + '.apicdn.sanity.io/v2023-10-01/data/query/' +
+              SANITY_DATASET + '?query=' + query + '&%24slug=' + paramStr;
+
+    var catLabels = { web: 'Web Development', ai: 'AI', business: 'Business', guides: 'Guides' };
+
+    fetch(url)
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        var post = data && data.result;
+        if (!post) {
+          stateEl.innerHTML = 'Post not found. <a href="/blog.html" style="color:var(--green)">Back to blog →</a>';
+          return;
+        }
+
+        document.title = post.title + ' — SouthStack';
+
+        var date = post.publishedAt
+          ? new Date(post.publishedAt).toLocaleDateString('en-NZ', { day: 'numeric', month: 'long', year: 'numeric' })
+          : '';
+        var cat = post.category && catLabels[post.category]
+          ? '<span class="post-cat">' + catLabels[post.category] + '</span>'
+          : '';
+
+        headerEl.innerHTML =
+          '<div class="section-label">Insights</div>' +
+          '<h1 class="page-title" style="font-size:clamp(1.6rem,4vw,2.3rem)">' + escapeHtml(post.title) + '</h1>' +
+          '<div class="post-header-meta" style="margin-top:0.75rem">' + cat + date + '</div>';
+
+        bodyEl.innerHTML = renderPortableText(post.body || []);
+      })
+      .catch(function () {
+        stateEl.textContent = 'Couldn\u2019t load this post right now. Please try again later.';
+      });
+
+    // ---- Minimal Portable Text → HTML renderer ----
+    function renderPortableText(blocks) {
+      var html = '';
+      var listType = null; // 'bullet' | 'number'
+
+      blocks.forEach(function (block) {
+        if (block._type !== 'block') return; // skip non-text blocks
+
+        var isListItem = !!block.listItem;
+
+        if (isListItem) {
+          var thisType = block.listItem; // 'bullet' or 'number'
+          if (listType !== thisType) {
+            if (listType) html += (listType === 'bullet' ? '</ul>' : '</ol>');
+            html += (thisType === 'bullet' ? '<ul>' : '<ol>');
+            listType = thisType;
+          }
+          html += '<li>' + renderSpans(block.children, block.markDefs) + '</li>';
+        } else {
+          if (listType) {
+            html += (listType === 'bullet' ? '</ul>' : '</ol>');
+            listType = null;
+          }
+          var inner = renderSpans(block.children, block.markDefs);
+          switch (block.style) {
+            case 'h2': html += '<h2>' + inner + '</h2>'; break;
+            case 'h3': html += '<h3>' + inner + '</h3>'; break;
+            case 'blockquote': html += '<blockquote>' + inner + '</blockquote>'; break;
+            default: html += '<p>' + inner + '</p>';
+          }
+        }
+      });
+
+      if (listType) html += (listType === 'bullet' ? '</ul>' : '</ol>');
+      return html;
+    }
+
+    function renderSpans(children, markDefs) {
+      if (!children) return '';
+      markDefs = markDefs || [];
+      return children.map(function (span) {
+        var text = escapeHtml(span.text || '');
+        var marks = span.marks || [];
+        marks.forEach(function (mark) {
+          // Decorators
+          if (mark === 'strong') text = '<strong>' + text + '</strong>';
+          else if (mark === 'em') text = '<em>' + text + '</em>';
+          else if (mark === 'code') text = '<code>' + text + '</code>';
+          else {
+            // Annotation (e.g. link) — look up in markDefs
+            var def = markDefs.find(function (d) { return d._key === mark; });
+            if (def && def._type === 'link' && def.href) {
+              var safeHref = escapeHtml(def.href);
+              var ext = /^https?:\/\//.test(def.href);
+              text = '<a href="' + safeHref + '"' +
+                     (ext ? ' target="_blank" rel="noopener"' : '') + '>' + text + '</a>';
+            }
+          }
+        });
+        return text;
+      }).join('');
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+  })();
+</script>
+</Layout>

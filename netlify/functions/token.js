@@ -12,7 +12,7 @@ exports.handler = async function(event) {
 
   var store = getStore({
     name: 'discovery-tokens',
-    siteID: process.env.NETLIFY_SITE_ID,
+    siteID: '6a4a1c67-e67c-4c03-9173-748beabf2025',
     token: process.env.NETLIFY_API_TOKEN
   });
 

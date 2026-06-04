@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+import body from "../partials/services.html?raw";
+import headcss from "../partials/services.head.css?raw";
+import post from "../partials/services.post.html?raw";
+---
+<Layout title={"Services — SouthStack"} description={"Web development services from SouthStack — Astro marketing sites, Next.js platforms, data & cloud (AWS), and maintenance retainers for NZ businesses."} path={"/services"} ogTitle={"Services — SouthStack"} ogDescription={"Web development services for NZ businesses. Astro sites, Next.js platforms, data & AWS."} chat={true}>
+  <Fragment slot="head">
+    <style is:inline set:html={headcss}></style>
+  </Fragment>
+  <Fragment set:html={body} />
+  <Fragment slot="post" set:html={post} />
+</Layout>

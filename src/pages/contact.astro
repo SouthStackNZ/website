@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import body from "../partials/contact.html?raw";
+import headcss from "../partials/contact.head.css?raw";
+import post from "../partials/contact.post.html?raw";
+---
+<Layout title={"Contact — SouthStack"} description={"Get in touch with SouthStack — web development studio based in Rolleston, Canterbury. Tell us about your project."} path={"/contact"} ogTitle={"Contact — SouthStack"} ogDescription={"Tell us about your project. We'll get back to you within one business day."} chat={true}>
+  <Fragment slot="head">
+    <style is:inline set:html={headcss}></style>
+  </Fragment>
+  <Fragment set:html={body} />
+  <Fragment slot="post" set:html={post} />
+  <script is:inline>
+          (function() {
+            var e = [104,101,108,108,111,64,115,111,117,116,104,115,116,97,99,107,46,99,111,46,110,122];
+            var addr = e.map(function(c){ return String.fromCharCode(c); }).join('');
+            var el = document.getElementById('email-display');
+            var link = document.getElementById('email-link');
+            if (el) el.textContent = addr;
+            if (link) link.href = 'mailto:' + addr;
+          })();
+        </script>
+  <script is:inline async src="https://tally.so/widgets/embed.js"></script>
+</Layout>

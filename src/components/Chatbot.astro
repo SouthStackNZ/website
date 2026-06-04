@@ -1,0 +1,24 @@
+---
+---
+<button id="ss-chat-toggle" aria-label="Chat with SouthStack">
+  <svg class="chat-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+  <svg class="close-icon" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+</button>
+<div id="ss-chat-panel" role="dialog" aria-label="SouthStack chat">
+  <div class="ss-chat-header">
+    <div class="ss-chat-header-dot"></div>
+    <span class="ss-chat-header-title">SouthStack</span>
+    <span class="ss-chat-header-sub">Ask us anything</span>
+  </div>
+  <div class="ss-chat-messages" id="ss-chat-messages">
+    <div class="ss-msg ss-msg-bot">Hey! I can answer questions about our services, pricing, and process. What would you like to know?</div>
+  </div>
+  <div class="ss-chat-input-row">
+    <textarea id="ss-chat-input" placeholder="Ask a question…" rows="1" maxlength="400"></textarea>
+    <button id="ss-chat-send" aria-label="Send">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+  <div class="ss-chat-disclaimer">Only answers questions about SouthStack. Not financial or legal advice.</div>
+</div>
+<script is:inline src="/chat.js"></script>

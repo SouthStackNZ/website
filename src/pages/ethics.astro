@@ -1,0 +1,11 @@
+---
+import Layout from "../layouts/Layout.astro";
+import body from "../partials/ethics.html?raw";
+import headcss from "../partials/ethics.head.css?raw";
+---
+<Layout title={"Code of Ethics — SouthStack"} description={"SouthStack's code of ethics — the work we take on, the work we don't, and why."} path={"/ethics"} ogTitle={"Code of Ethics — SouthStack"} ogDescription={"SouthStack's code of ethics — the work we take on, the work we don't, and why."} chat={false}>
+  <Fragment slot="head">
+    <style is:inline set:html={headcss}></style>
+  </Fragment>
+  <Fragment set:html={body} />
+</Layout>

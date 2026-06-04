@@ -1,0 +1,40 @@
+.post-list { max-width: 720px; margin-top: 1rem; }
+    .post-card {
+      display: block;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: opacity 0.15s;
+    }
+    .post-card:hover { opacity: 0.7; }
+    .post-card:last-child { border-bottom: none; }
+    .post-card h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0 0 0.4rem;
+      color: var(--text);
+    }
+    .post-card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 0.6rem;
+    }
+    .post-meta {
+      font-size: 0.8rem;
+      color: var(--muted2, var(--muted));
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .post-cat {
+      display: inline-block;
+      color: var(--green);
+      margin-right: 0.6rem;
+    }
+    .blog-state {
+      max-width: 720px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      padding: 2rem 0;
+    }

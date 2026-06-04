@@ -1,0 +1,41 @@
+.policy-body {
+      max-width: 720px;
+    }
+
+    .policy-body h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--text);
+    }
+
+    .policy-body h2:first-of-type { margin-top: 0; }
+
+    .policy-body p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+
+    .policy-body ul {
+      padding-left: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .policy-body li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.3rem;
+    }
+
+    .policy-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      margin-bottom: 3rem;
+    }

@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+import body from "../partials/blog.html?raw";
+import headcss from "../partials/blog.head.css?raw";
+import post from "../partials/blog.post.html?raw";
+---
+<Layout title={"Blog — SouthStack"} description={"Insights on web development, AI, and building better websites for New Zealand businesses."} path={"/blog"} ogTitle={"Blog — SouthStack"} ogDescription={"Insights on web development, AI, and building better websites for New Zealand businesses."} chat={false}>
+  <Fragment slot="head">
+    <style is:inline set:html={headcss}></style>
+  </Fragment>
+  <Fragment set:html={body} />
+  <Fragment slot="post" set:html={post} />
+  <script is:inline>
+  // ====== CONFIG — replace with your Sanity project details ======
+  var SANITY_PROJECT_ID = 'j8pgoqqb';
+  var SANITY_DATASET = 'production';
+  // ===============================================================
+
+  (function () {
+    var listEl = document.getElementById('post-list');
+    var stateEl = document.getElementById('blog-state');
+
+    var query = encodeURIComponent(
+      '*[_type == "post" && publishedAt <= now()] | order(publishedAt desc){title, "slug": slug.current, excerpt, publishedAt, category}'
+    );
+    var url = 'https://' + SANITY_PROJECT_ID + '.apicdn.sanity.io/v2023-10-01/data/query/' + SANITY_DATASET + '?query=' + query;
+
+    var catLabels = { web: 'Web Development', ai: 'AI', business: 'Business', guides: 'Guides' };
+
+    fetch(url)
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        var posts = (data && data.result) || [];
+        if (!posts.length) {
+          stateEl.textContent = 'No posts yet — check back soon.';
+          return;
+        }
+        stateEl.remove();
+        posts.forEach(function (p) {
+          var a = document.createElement('a');
+          a.className = 'post-card';
+          a.href = '/post.html?slug=' + encodeURIComponent(p.slug);
+
+          var date = p.publishedAt
+            ? new Date(p.publishedAt).toLocaleDateString('en-NZ', { day: 'numeric', month: 'long', year: 'numeric' })
+            : '';
+          var cat = p.category && catLabels[p.category]
+            ? '<span class="post-cat">' + catLabels[p.category] + '</span>'
+            : '';
+
+          a.innerHTML =
+            '<div class="post-meta">' + cat + date + '</div>' +
+            '<h2>' + escapeHtml(p.title) + '</h2>' +
+            (p.excerpt ? '<p>' + escapeHtml(p.excerpt) + '</p>' : '');
+          listEl.appendChild(a);
+        });
+      })
+      .catch(function () {
+        stateEl.textContent = 'Couldn\u2019t load posts right now. Please try again later.';
+      });
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+  })();
+</script>
+</Layout>

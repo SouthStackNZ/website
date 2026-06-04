@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+import body from "../partials/pricing.html?raw";
+import headcss from "../partials/pricing.head.css?raw";
+import post from "../partials/pricing.post.html?raw";
+---
+<Layout title={"Pricing — SouthStack"} description={"Transparent pricing for web development services from SouthStack. Astro marketing sites from $350 + GST, Next.js platforms from $6,000 + GST."} path={"/pricing"} ogTitle={"Pricing — SouthStack"} ogDescription={"Transparent pricing for web development. Astro sites, Next.js platforms, maintenance retainers."} chat={true}>
+  <Fragment slot="head">
+    <style is:inline set:html={headcss}></style>
+  </Fragment>
+  <Fragment set:html={body} />
+  <Fragment slot="post" set:html={post} />
+</Layout>

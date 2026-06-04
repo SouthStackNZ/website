@@ -1,0 +1,113 @@
+.contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-info h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .contact-info p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      margin-bottom: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+    .contact-detail:hover { border-color: var(--green-border); color: var(--green); }
+    .contact-detail-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .response-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 1.5rem;
+      padding: 0.75rem 1rem;
+      border-left: 3px solid var(--green-border);
+      background: var(--green-dim);
+      border-radius: 0 8px 8px 0;
+    }
+    /* TALLY FORM WRAPPER */
+    .form-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .form-header {
+      padding: 1.75rem 2rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .form-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .form-header p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+    /* Tally embed container */
+    .tally-embed {
+      padding: 1.5rem 2rem 2rem;
+    }
+    /* PLACEHOLDER — shown until Tally is configured */
+    .form-placeholder {
+      padding: 2rem;
+      text-align: center;
+    }
+    .form-placeholder p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .form-placeholder code {
+      display: block;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: var(--green);
+      text-align: left;
+      margin: 0.5rem 0;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .setup-steps {
+      text-align: left;
+      margin-top: 1.5rem;
+    }
+    .setup-steps h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .setup-steps ol {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding-left: 1.25rem;
+      line-height: 1.8;
+    }
+    .setup-steps a { color: var(--green); }
+    @media (max-width: 680px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+    }

@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import body from "../partials/churches.html?raw";
+import headcss from "../partials/churches.head.css?raw";
+import post from "../partials/churches.post.html?raw";
+---
+<Layout title={"Websites for Churches — SouthStack Canterbury NZ"} description={"Websites for Christian churches in Canterbury and South Island NZ. Fast, accessible, and easy to update."} path={"/churches"} ogTitle={"Websites for Churches — SouthStack Canterbury NZ"} ogDescription={"Free websites for Canterbury Christian churches. We build and host your site — you only pay for your domain name."} chat={false}>
+  <Fragment slot="head">
+    <style is:inline set:html={headcss}></style>
+    <script type="application/ld+json" set:html={`{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Websites for Churches and Nonprofits",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "SouthStack",
+      "url": "https://southstack.co.nz",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Rolleston",
+        "addressRegion": "Canterbury",
+        "addressCountry": "NZ"
+      }
+    },
+    "description": "Free websites for Canterbury churches and faith communities. SouthStack builds and hosts your site — you only pay for your domain name.",
+    "areaServed": ["Rolleston","Selwyn","Christchurch","Canterbury","South Island","New Zealand"]
+  }`}></script>
+  </Fragment>
+  <Fragment set:html={body} />
+  <Fragment slot="post" set:html={post} />
+</Layout>

@@ -1,0 +1,11 @@
+---
+import Layout from "../layouts/Layout.astro";
+import body from "../partials/privacy.html?raw";
+import headcss from "../partials/privacy.head.css?raw";
+---
+<Layout title={"Privacy Policy — SouthStack"} description={"SouthStack privacy policy — how we collect, use, and protect your personal information under the NZ Privacy Act 2020."} path={"/privacy"} ogTitle={"Privacy Policy — SouthStack"} ogDescription={"SouthStack privacy policy — how we collect, use, and protect your personal information under the NZ Privacy Act 2020."} chat={false}>
+  <Fragment slot="head">
+    <style is:inline set:html={headcss}></style>
+  </Fragment>
+  <Fragment set:html={body} />
+</Layout>
