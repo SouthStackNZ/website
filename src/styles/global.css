@@ -425,7 +425,7 @@ footer {
   font-size: 0.85rem; font-weight: 600; cursor: pointer;
 }
 .cookie-decline {
-  background: transparent; color: #666; border: 1px solid #333;
+  background: transparent; color: #9a9a9a; border: 1px solid #333;
   padding: 0.5rem 1.1rem; border-radius: 8px;
   font-size: 0.85rem; cursor: pointer;
 }
@@ -487,7 +487,7 @@ footer {
   }
   .ss-chat-header-dot { width: 8px; height: 8px; border-radius: 50%; background: #4caf7d; flex-shrink: 0; }
   .ss-chat-header-title { font-size: 0.9rem; font-weight: 600; color: #fff; }
-  .ss-chat-header-sub { font-size: 0.75rem; color: #666; margin-left: auto; }
+  .ss-chat-header-sub { font-size: 0.75rem; color: #9a9a9a; margin-left: auto; }
 
   .ss-chat-messages {
     flex: 1;
@@ -502,7 +502,7 @@ footer {
   .ss-msg { max-width: 85%; font-size: 0.875rem; line-height: 1.55; padding: 0.6rem 0.85rem; border-radius: 12px; }
   .ss-msg-bot { background: #161d16; border: 1px solid rgba(255,255,255,0.06); color: #ccc; align-self: flex-start; border-bottom-left-radius: 4px; }
   .ss-msg-user { background: #4caf7d; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
-  .ss-msg-typing { color: #444; font-style: italic; font-size: 0.8rem; align-self: flex-start; }
+  .ss-msg-typing { color: #9a9a9a; font-style: italic; font-size: 0.8rem; align-self: flex-start; }
 
   .ss-chat-input-row {
     padding: 0.75rem;
@@ -525,7 +525,7 @@ footer {
     resize: none;
   }
   #ss-chat-input:focus { border-color: rgba(76,175,125,0.4); }
-  #ss-chat-input::placeholder { color: #444; }
+  #ss-chat-input::placeholder { color: #8a8a8a; }
   #ss-chat-send {
     background: #4caf7d;
     border: none;
@@ -543,7 +543,7 @@ footer {
   #ss-chat-send:hover { background: #3d9e6a; }
   #ss-chat-send:disabled { background: #2a4a35; cursor: not-allowed; }
   #ss-chat-send svg { width: 16px; height: 16px; fill: #fff; }
-  .ss-chat-disclaimer { padding: 0.4rem 0.75rem 0.5rem; font-size: 0.7rem; color: #333; text-align: center; flex-shrink: 0; }
+  .ss-chat-disclaimer { padding: 0.4rem 0.75rem 0.5rem; font-size: 0.7rem; color: #8a8a8a; text-align: center; flex-shrink: 0; }
 
 /* Accessibility: inline text links distinguished by more than colour (1.4.1) */
 a:not([class]) { text-decoration: underline; }
