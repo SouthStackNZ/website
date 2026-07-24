@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import Chatbot from "../components/Chatbot.astro";
-const { title, description, path="/", ogTitle=title, ogDescription=description, chat=false, showFooter=true } = Astro.props;
+const { title, description, path="/", ogTitle=title, ogDescription=description, chat=false, showFooter=true, noindex=false } = Astro.props;
 const canonical = "https://southstack.co.nz" + path;
 const consentChat = "<script is:inline>\n    (function() {\n      var banner = document.getElementById('cookie-banner');\n      var consent = localStorage.getItem('ss-cookie-consent');\n\n      function getChatToggle() { return document.getElementById('ss-chat-toggle'); }\n      function pushChatUp() { var t = getChatToggle(); if (t) t.style.bottom = (banner.offsetHeight + 16) + 'px'; }\n      function resetChat() { var t = getChatToggle(); if (t) t.style.bottom = ''; }\n\n      if (!consent) {\n        setTimeout(function() {\n          banner.classList.add('visible');\n          setTimeout(pushChatUp, 50);\n        }, 800);\n      }\n      window.cookieAccept = function() {\n        localStorage.setItem('ss-cookie-consent', 'accepted');\n        banner.classList.remove('visible');\n        resetChat();\n        loadAnalytics();\n      };\n      window.cookieDecline = function() {\n        localStorage.setItem('ss-cookie-consent', 'declined');\n        banner.classList.remove('visible');\n        resetChat();\n      };\n    })();\n  </script>";
 const consentPlain = "<script is:inline>\n    (function() {\n      var banner = document.getElementById('cookie-banner');\n      var consent = localStorage.getItem('ss-cookie-consent');\n      if (!consent) {\n        setTimeout(function() { banner.classList.add('visible'); }, 800);\n      }\n      window.cookieAccept = function() {\n        localStorage.setItem('ss-cookie-consent', 'accepted');\n        banner.classList.remove('visible');\n        loadAnalytics();\n      };\n      window.cookieDecline = function() {\n        localStorage.setItem('ss-cookie-consent', 'declined');\n        banner.classList.remove('visible');\n      };\n    })();\n  </script>";
@@ -13,7 +13,7 @@ const consentPlain = "<script is:inline>\n    (function() {\n      var banner = 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <link rel="canonical" href={canonical} />
+  {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -46,7 +46,16 @@ const consentPlain = "<script is:inline>\n    (function() {\n      var banner = 
       s.src = 'https://www.googletagmanager.com/gtag/js?id=G-J530JH16CT';
       document.head.appendChild(s);
       gtag('config', 'G-J530JH16CT');
+      var pl = document.createElement('script');
+      pl.defer = true;
+      pl.setAttribute('data-domain', 'southstack.co.nz');
+      pl.src = 'https://plausible.io/js/script.js';
+      document.head.appendChild(pl);
     };
+    // Returning visitors who already accepted: load analytics immediately
+    if (localStorage.getItem('ss-cookie-consent') === 'accepted') {
+      window.loadAnalytics();
+    }
   </script>
   <slot name="head" />
 </head>
@@ -66,7 +75,7 @@ const consentPlain = "<script is:inline>\n    (function() {\n      var banner = 
       <li><a href="/blog.html">Blog</a></li>
       <li><a href="/contact.html" class="nav-cta">Get in touch</a></li>
     </ul>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -122,9 +131,11 @@ const consentPlain = "<script is:inline>\n    (function() {\n      var banner = 
   <script is:inline>
   const toggle = document.getElementById('nav-toggle');
   const links = document.getElementById('nav-links');
-  if (toggle) toggle.addEventListener('click', () => links.classList.toggle('open'));
+  if (toggle) toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
 </script>
-  <script is:inline defer data-domain="southstack.co.nz" src="https://plausible.io/js/script.js"></script>
   <Fragment set:html={chat ? consentChat : consentPlain} />
   {chat && <Chatbot />}
 </body>

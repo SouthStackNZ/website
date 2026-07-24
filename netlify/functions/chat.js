@@ -44,29 +44,39 @@ NZBN: 9429053502803. Email: hello@southstack.co.nz.
 We build websites and web applications for NZ businesses and organisations.
 
 SERVICES
-1. Astro Marketing Site — $350 + GST flat fee. 3–6 week timeline.
+1. Astro Marketing Site — from $350 excl. GST. 3–6 week timeline.
    Fast static sites for small NZ businesses. Includes Figma design (up to 8 pages),
    2 rounds of revisions, CMS (Decap or Sanity), contact form, WCAG 2.2 AA,
    Lighthouse >90, cookie consent, Loom handover, full IP transfer.
    Best for: brochure sites, portfolios, local businesses.
    Hosted free on Cloudflare Pages. You pay domain ~$15-25/yr directly.
 
-2. Next.js Business Platform — from $6,000 + GST. 6–16 week timeline.
+2. Next.js Business Platform — from $3,500 excl. GST (standard), from $6,000 excl. GST (complex builds). 6–16 week timeline.
    Full-stack React applications. E-commerce, bookings, member portals, dashboards, SaaS MVPs.
    Includes Figma design (up to 10 pages), SSR & API routes, database, auth, staging environment.
    Stack: Next.js, Tailwind, Prisma/Supabase, Vercel, Stripe.
 
-3. Maintenance & Retainer — from $150 + GST/mo. Minimum 3-month commitment.
+3. Maintenance & Retainer — from $150 excl. GST per month. Minimum 3-month commitment.
    Monthly security updates, dependency updates, performance monitoring, content changes.
    Tiers: Basic (1hr changes/mo), Standard (3hrs/mo), Managed (hosting included).
 
-4. RAG AI Assistant — from $800 + GST. 1–3 week timeline.
+4. RAG AI Assistant — from $800 excl. GST. 1–3 week timeline.
    Custom AI chatbot trained on your content. Answers FAQs, product info, policies.
    Embedded chat widget that matches your site. Fallback to contact form if it can't answer.
    Stack: Claude API, vector embeddings, Supabase pgvector, Cloudflare Workers.
 
 5. Data & Cloud (AWS) — coming soon.
    AWS infrastructure, data pipelines, analytics dashboards, ML integration.
+
+ADD-ONS (per project, excl. GST)
+AI-generated logo $600 · AI-assisted copywriting $150/page · Favicon + OG image set $75 ·
+Extra pages $100/page · E-commerce setup $200 · Booking system $800 · Blog/news CMS $600 · Multilingual $300 ·
+Shopify setup $400 · Google Business Profile $100 · SEO foundations $250 · Email setup (Workspace/Zoho) $150.
+
+PAYMENT TERMS
+$250 design deposit before Figma design begins (deducted from project total if the client proceeds).
+Then 50% project deposit upfront, 50% on completion. All prices exclude GST — SouthStack is not currently
+GST-registered, so no GST is charged at this time.
 
 ALWAYS INCLUDED IN EVERY PROJECT
 WCAG 2.2 AA accessibility, HTTPS/SSL, fully responsive, Lighthouse >90,

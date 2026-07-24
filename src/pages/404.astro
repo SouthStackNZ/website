@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import body from "../partials/404.html?raw";
 import headcss from "../partials/404.head.css?raw";
 ---
-<Layout title={"Page Not Found — SouthStack"} description={""} path={"/404"} ogTitle={"Page Not Found — SouthStack"} ogDescription={""} chat={false}>
+<Layout title={"Page Not Found — SouthStack"} description={""} path={"/404"} ogTitle={"Page Not Found — SouthStack"} ogDescription={""} chat={false} noindex={true}>
   <Fragment slot="head">
     <style is:inline set:html={headcss}></style>
   </Fragment>
